@@ -1,0 +1,11 @@
+#!/bin/sh
+LIST=""
+for arg in $@; do
+	if [ -f "$arg" ]; then
+		LIST="$LIST"$'\n'"$(cat "$arg")"
+	else
+		LIST="$LIST"$'\n'"$arg"
+	fi
+done;
+echo "$LIST" | shuf | marietje
+unset LIST

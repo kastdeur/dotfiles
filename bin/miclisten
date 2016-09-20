@@ -1,0 +1,2 @@
+#! /bin/sh
+ssh $@ 'arecord -f cd -t raw | oggenc - -r' | mplayer -

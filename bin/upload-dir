@@ -1,0 +1,39 @@
+#!/bin/sh
+
+tmp_file="./tmp_list";
+com="upload-to-marietje"
+remove="n";
+
+trap "echo Aborted!; exit;" INT TERM
+
+if [ ! -f "$tmp_file" ]; then
+	touch $tmp_file;
+fi
+
+echo "###$(date) - $(id -u -n)" >> $tmp_file;
+
+for f in ./*; do 
+	name=${f##*/}
+	if [ "$name" = "$0" ]; then continue
+	elif [ "$name" = "$tmp_file" ]; then continue
+	fi
+
+	echo "$com $f";
+#  echo | 
+	$com "$f";
+	if [ "$?" = "0" ]; then 
+		echo "$f" >> $tmp_file;
+	fi
+done
+
+if [ "y$remove" = "yy" ]; then
+	while read p; do
+		if [[ "$p" == "###"* ]]; then 
+			break
+		fi
+
+		rm -v \"$p\";
+	done < tac "$tmp_file";
+fi
+
+echo "It's Done!!";

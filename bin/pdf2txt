@@ -1,0 +1,9 @@
+#! /bin/bash
+pdftotext $1 -
+
+## Function for diffing pdf's for git
+# in ~/.gitconfig add
+## [diff "pdf"]
+##    textconv = pdf2txt
+# in repo's .gitattributes add
+## *.pdf diff=pdf
