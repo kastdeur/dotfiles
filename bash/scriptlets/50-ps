@@ -1,0 +1,242 @@
+# .bash_files
+# /PS
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and
+	# a case would tend to support setf rather than setaf.)
+	    color_prompt=yes
+    else
+	    color_prompt=
+    fi
+fi
+
+# Old PS1
+#if [ "$color_prompt" = yes ]; then
+#	PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\H\[\033[00m\] \[\033[0;33;40m\](\t)\[\033[00m\] \[\033[01;34m\]\[$(ls |wc -l)\]@\W\[\033[00m\]:\$ '
+#else
+#	PS1='${debian_chroot:+($debian_chroot)}\u@\H (\t) \[$(ls | wc -l)\]@\W:\$ '
+#fi
+
+
+function color() {
+	if [ -n "$force_color_prompt" ] ; then
+		if [ -n "$color_prompt" ] ; then
+			return 0
+		else
+			return 1
+		fi
+	else
+		return 1
+	fi
+}
+
+export PROMPT_COMMAND=__prompt_command
+
+function __prompt_command() {
+	local RETVAL=$?
+	if [ ! $RETVAL -ne 0 ]; then
+		RETVAL=0
+	fi
+
+	PS1="${debian_chroot:+($debian_chroot)}"
+
+#Return Value
+	if [ -n $RETVAL ]; then
+		PS1+="$(retval ${RETVAL})"
+	fi
+### Add Git Status ### 
+	if [[ $(command -v git) ]]; then
+		PS1+="$(git_status) "
+	fi
+	
+
+#user@hostname
+	if color ; then
+		PS1+="${Gre}\u${RCol}"
+	else
+		PS1+="\u"
+	fi
+
+	PS1+="@"
+
+	if color ; then
+		if [[ $HOSTNAME == 'lilo'* ]];  then
+			PS1+="${BWhi}\H${RCol}"
+		elif [[ $HOSTNAME == 'hg'* ]]; then
+			PS1+="${BRed}\H${RCol}"
+		else
+			PS1+="${Blu}${On_Whi}\H${RCol}"
+		fi
+	else 
+		PS1+="\H"
+	fi
+
+#time w/ seconds
+	if color ;  then
+		PS1+="${Yel}${On_Bla}"
+	fi
+	
+	PS1+="(\t)"
+
+	if color ; then
+		PS1+="${RCol}"
+	fi
+	PS1+=" "
+#dir count, pwd
+	if color ; then
+		PS1+="${BBlu}"
+	fi
+
+	PS1+="\[$(ls |wc -l)\]@\W"
+
+	if color ; then
+		PS1+="${RCol}"
+	fi
+	PS1+=" "
+#UID
+	PS1+=':\$ '
+}
+
+function retval() {
+### Determine Return Value
+	local PS1
+	if [ -z "$color_prompt" ]; then
+		PS1="[$1] "
+	else
+		if [ ! $1 == 0 ]; then
+			PS1="${Red}×${RCol}"
+		else
+			PS1="${Gre}+${RCol}"
+		fi
+	fi
+
+	echo "${PS1} "
+}
+
+function git_status() {
+### Determine Git Status
+		local PS1
+		local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+
+		if [ "$GStat" ]; then
+			### Fetch Time Check ### {{{
+			local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
+			if [ "${LAST}" ]; then
+				local TIME=$(echo $(date +"%s") - ${LAST} | bc)
+				## Check if more than 60 minutes since last
+				if [ "${TIME}" -gt "3600" ]; then
+					git fetch 2>/dev/null
+					PS1+=' +'
+					## Refresh var
+					local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+				fi
+			fi
+			### End Fetch Check ### }}}
+
+			### Test For Changes ### {{{
+			## Change this to test for 'ahead' or 'behind'!
+			local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
+			if [ "$GChanges" == "0" ]; then
+				local GitCol=$Gre
+			  else
+				local GitCol=$Red
+			fi
+			### End Test Changes ### }}}
+
+			### Find Branch ### {{{
+			local GBra="$(echo ${GStat} | tr ':' '\n' | grep "^##" | cut -c4- | grep -o "^[a-zA-Z]\{1,\}[^\.]")"
+			if [ "$GBra" ]; then
+				if [ "$GBra" == "master" ]; then
+					local GBra="M"			# Because why waste space
+				fi
+			  else
+				local GBra="ERROR"			# It could happen supposedly?
+			fi
+			### End Branch ### }}}
+
+			PS1+=" ${GitCol}[$GBra]${RCol}"	# Add result to prompt
+
+			### Find Commit Status ### {{{
+				## Test Modified and Untracked for "0"
+#					# local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
+
+			local GAhe="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "ahead [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
+			if [ "$GAhe" ]; then
+				PS1+="${Gre}↑${RCol}${GAhe}"	# Ahead
+			fi
+
+			## Needs a `git fetch`
+			local GBeh="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "behind [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
+			if [ "$GBeh" ]; then
+				PS1+="${Red}↓${RCol}${GBeh}"	# Behind
+			fi
+
+			local GMod="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]M")"
+			if [ "$GMod" -gt "0" ]; then
+				PS1+="${Pur}≠${RCol}${GMod}"	# Modified
+			fi
+
+			local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
+			if [ "$GUnt" -gt "0" ]; then
+				PS1+="${Yel}?${RCol}${GUnt}"	# Untracked
+			fi
+			### End Commit Status ### }}}
+			
+			echo "${PS1}"
+		fi
+}
+
+
+# Git
+# get current branch in git repo
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]; then
+		STAT=`parse_git_dirty`
+		echo "[${BRANCH}${STAT}]"
+	else
+		echo ""
+	fi
+}
+
+# get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
+}

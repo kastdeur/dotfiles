@@ -1,0 +1,16 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.bashrc: bash/bashrc
+    ~/.profile: profiles/main
+    ~/.gitconfig: git/gitconfig
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.vimrc: vim/vimrc
+
+- shell:
+  - git submodules update # after linking ~/.gitconfig

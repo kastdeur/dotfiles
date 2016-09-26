@@ -1,0 +1,39 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Use vim if possible instead of vi
+if [[ $(command -v vim) ]]; then
+	alias vi='vim'
+fi
+
+# Reload bashrc
+alias bashreload="source ~/.bashrc"
+
+# Easy calculator instead of bc
+alias pc='python -ic "from __future__ import division; from math import *"'
+
+# Moving around
+alias ~='cd ~'
+alias ..='cd ..'
+
+
+#Aliases for RU
+alias lilo='ssh lilo'
+alias MC='cd ~/MC; echo "Welcome to Marie Curie"'
+alias MCMail='~/MC/www/mailer/mariemailer.psql.pl'
+alias DocMail='~/MC/www/mailer/docentmailer.pl'
+

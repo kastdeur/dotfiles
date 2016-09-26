@@ -1,0 +1,6 @@
+[diff "pdf"]
+	textconv = pdf2txt
+[user]
+	name = Eric Teunis de Boone
+[push]
+	default = matching

@@ -1,0 +1,15 @@
+MC=/vol/impuls/marcur
+PATH=$MC/common/bin:$PATH
+
+if [[ -d $HOME/public/bin ]]; then
+	PATH=$HOME/public/bin:$PATH
+fi
+
+if [[ -d $HOME/bin ]]; then
+	PATH=$HOME/bin:$PATH
+fi
+
+MANPATH=$MC/lilo/share/man:$MANPATH
+## export it all
+export PATH
+export MANPATH

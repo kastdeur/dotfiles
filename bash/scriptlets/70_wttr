@@ -1,0 +1,8 @@
+#This file should be cronned from: wttr.in/<place>
+#For example: 
+#27 */2 * * *	curl -s wttr.in/Voorthuizen | sed -n 3,7p > .wttr 2>&1
+WTTR=~/.wttr
+if [ -f $WTTR ]; then
+	cat $WTTR
+	alias wttr='cat $WTTR'
+fi

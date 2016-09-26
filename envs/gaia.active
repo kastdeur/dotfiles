@@ -1,0 +1,5 @@
+# Starlink
+
+export STARLINK_DIR=/vol/optcoma/star-namaka
+
+[ -r $STARLINK_DIR/etc/profile ] && . $STARLINK_DIR/etc/profile

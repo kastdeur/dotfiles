@@ -1,0 +1,8 @@
+# modifications by HEALPixAutoConf 3.31
+
+# Version 3.20
+export HEALPIX_CONFIG=/home/edeboone/Documents/Stage/bin/Healpix_3.20/confdir/3_20_Linux/config
+
+# Version 3.31
+#export HEALPIX_CONFIG=/home/edeboone/Documents/Stage/bin/Healpix_3.31/confdir/3_31_Linux/config
+[ -r $HEALPIX_CONFIG ] && . $HEALPIX_CONFIG

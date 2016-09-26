@@ -1,0 +1,6 @@
+#Aliases for RU
+alias lilo='ssh lilo'
+alias MC='cd ~/MC; echo "Welcome to Marie Curie"'
+alias MCMail='~/MC/www/mailer/mariemailer.psql.pl'
+alias DocMail='~/MC/www/mailer/docentmailer.pl'
+

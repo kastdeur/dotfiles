@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+[ ! -z "$DOTFILES" ] && DOTBASH="$DOTFILES/bash"
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -16,12 +18,20 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-BASHFOLDER=~/.bash_files
-if [ -d "$BASHFOLDER" ]; then
-	for f in $BASHFOLDER/*.active;
-	do
-		source "$f";
+# Load main things
+if [ -d "$DOTBASH/main" ]; then
+	for f in $DOTBASH/main/*; do
+		source "$f"
 	done
-else
-	echo "BASHFOLDER (${BASHFOLDER}) Not Found!";
 fi
+
+# Try custom bashrc
+#if [[ $HOSTNAME == 'hg'* && -r "hg.bashrc"]]; then
+#	source "hg.bashrc"
+#fi
+
+# Try hostname bashrcs
+if [ -r "$DOTBASH/$HOSTNAME.bashrc" ]; then
+	source "$DOTBASH/$HOSTNAME.bashrc"
+fi
+

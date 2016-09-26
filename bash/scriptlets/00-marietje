@@ -1,0 +1,4 @@
+# Get Marietje and shizzle
+if [ -f /vol/impuls/marcur/bashrc ]; then
+   . /vol/impuls/marcur/bashrc
+fi
