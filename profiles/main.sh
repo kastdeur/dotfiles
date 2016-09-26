@@ -1,8 +1,6 @@
-# Define DOTFILES for easy access
 DOTFILES="$HOME/.dotfiles"
-
-# Add DOTFILES/bin/ to PATH
-DOTBIN="$HOME/.bin"
+#Add DOTFILES/bin/ to PATH
+DOTBIN="$DOTFILES/bin"
 if [ -d "$DOTBIN" ]; then
 	export PATH="$PATH:$DOTBIN"
 fi
@@ -19,7 +17,8 @@ if [ -d "DOTENVS" ]; then
 fi
 
 
+
 # Source Bashrc if BASH
-if [ "$BASH" ] && [ -f ~/.bashrc ]; then
-	source ~/.bashrc
+if [ "$BASH" ] && [ -f $DOTFILES/bash/bashrc ]; then
+	source $DOTFILES/bash/bashrc
 fi

@@ -7,10 +7,10 @@
 
 - link:
     ~/.bashrc: bash/bashrc
-    ~/.profile: profiles/main
+    ~/.profile: profile.sh
     ~/.gitconfig: git/gitconfig
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
 
-- shell:
-  - git submodules update # after linking ~/.gitconfig
+#- shell:
+#  - git submodules update # after linking ~/.gitconfig
