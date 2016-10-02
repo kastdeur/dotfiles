@@ -67,7 +67,9 @@ function __prompt_command() {
 	PS1+="@"
 
 	if color ; then
-		if [[ $HOSTNAME == 'lilo'* ]];  then
+		if [[ $HOSTNAME == 'fatserf' ]]; then
+			PS1+="${Pur}\H${RCol}"
+		elif [[ $HOSTNAME == 'lilo'* ]];  then
 			PS1+="${BWhi}\H${RCol}"
 		elif [[ $HOSTNAME == 'hg'* ]]; then
 			PS1+="${BRed}\H${RCol}"
