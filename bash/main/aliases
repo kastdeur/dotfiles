@@ -29,11 +29,3 @@ alias pc='python -ic "from __future__ import division; from math import *"'
 # Moving around
 alias ~='cd ~'
 alias ..='cd ..'
-
-
-#Aliases for RU
-alias lilo='ssh lilo'
-alias MC='cd ~/MC; echo "Welcome to Marie Curie"'
-alias MCMail='~/MC/www/mailer/mariemailer.psql.pl'
-alias DocMail='~/MC/www/mailer/docentmailer.pl'
-

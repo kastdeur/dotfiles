@@ -40,3 +40,6 @@ if [ -r "$DOTBASH/$HOSTNAME.bashrc" ]; then
 	source "$DOTBASH/$HOSTNAME.bashrc"
 fi
 
+if [ -r "$HOME/.bashrc.local" ]; then
+	source "$HOME/.bashrc.local"
+fi

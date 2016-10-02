@@ -1,1 +1,3 @@
 [ -z "$DOTFILES" ] && source "$HOME/.profile"
+
+[ -r "$HOME/.bash_profile.local" ] && source "$HOME/.bash_profile.local"

@@ -1,0 +1,14 @@
+WTTR=~/.wttr
+if [ -f $WTTR ]; then
+	cat $WTTR
+	alias wttr='cat $WTTR'
+else
+	read -p "{$Yel}Do you want your weather cronned? " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		cronjob="curl -s wttr.in/Voorthuizen | sec -n 3,7p > $WTTR 2>&1	"
+		croncmd="27 */2 * * *  $cronjob"
+		( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
+	fi
+fi

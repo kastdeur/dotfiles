@@ -11,6 +11,7 @@
     ~/.gitconfig: git/gitconfig
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
+    ~/.ncmpcpp/config: ncmpcpp/config
 
 #- shell:
 #  - git submodules update # after linking ~/.gitconfig

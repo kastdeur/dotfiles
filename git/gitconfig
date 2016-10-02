@@ -1,6 +1,10 @@
-[diff "pdf"]
-	textconv = pdf2txt
+# This is Git's per-user configuration file.
 [user]
 	name = Eric Teunis de Boone
+	email = ericteunis@gmail.com
+[gui]
+	editor = geany
 [push]
 	default = matching
+[diff "pdf"]
+	textconv = pdf2txt
