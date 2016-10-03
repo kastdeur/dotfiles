@@ -1,1 +1,5 @@
+colors_enabled = "yes"
+mpd_connection_timeout = "2"
 user_interface = "alternative"
+mpd_crossfade_time = "2"
+

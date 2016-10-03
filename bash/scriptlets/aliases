@@ -11,8 +11,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
+alias l.='ls -d *'
+alias ll='ls -l --si -v --group-directories-first'
 alias la='ls -A'
+alias lla='ll -A'
 alias l='ls -CF'
 
 # Use vim if possible instead of vi
@@ -29,3 +31,7 @@ alias pc='python -ic "from __future__ import division; from math import *"'
 # Moving around
 alias ~='cd ~'
 alias ..='cd ..'
+
+# Computer control
+alias blank='xset dpms force off'
+alias lock='blank; xscreensaver-command --lock'

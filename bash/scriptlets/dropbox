@@ -1,0 +1,5 @@
+# Run the dropbox daemon in the background
+if [ -x "$HOST/.dropbox-dist/dropboxd" ]
+then
+	"$HOST/.dropbox-dist/dropboxd" & alias killDropbox='kill $!'
+fi

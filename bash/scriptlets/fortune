@@ -1,3 +1,10 @@
-if [[ $(command -v fortune) ]]; then
-	fortune -so
+# Give a fortune cookie
+if [[ $(command -v fortune) ]]
+then
+	if [[ $(command -v cowsay) ]]
+	then
+		fortune -so | cowsay -n
+	else
+		fortune -so
+	fi
 fi

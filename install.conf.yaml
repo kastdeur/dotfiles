@@ -7,11 +7,14 @@
 
 - link:
     ~/.bashrc: bash/bashrc
-    ~/.profile: profile.sh
     ~/.gitconfig: git/gitconfig
+    ~/.ncmpcpp/config: ncmpcpp/config
+    ~/.profile: profile.sh
+    ~/.ssh/config: ssh/config
+    ~/.tmux: tmux
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
-    ~/.ncmpcpp/config: ncmpcpp/config
+    ~/.xinitrc: xinitrc
 
 #- shell:
 #  - git submodules update # after linking ~/.gitconfig

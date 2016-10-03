@@ -1,0 +1,6 @@
+# Add StarLink
+STARLINK_DIR='/mnt/data/user/bin/star-hikianalia'
+if [ -e $STARLINK_DIR"/etc/profile" ]; then
+	source $STARLINK_DIR"/etc/profile"
+fi 
+

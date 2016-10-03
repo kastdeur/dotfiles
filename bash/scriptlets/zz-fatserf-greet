@@ -1,3 +1,2 @@
 echo "Welcome onboard:"
 figlet -t sXc : fatSerf
-fortune | cowsay -n
