@@ -7,11 +7,17 @@ endif
 
 filetype plugin on
 
+"Load LaTex-Suite on empty tex files
+let g:tex_flavor='latex'
+
 if &term=="xterm"
      set t_Co=8
      set t_Sb=^[[4%dm
      set t_Sf=^[[3%dm
 endif
+
+"Auto indentation
+filetype indent on
 
 " Set tabbing stuff
 set autoindent
@@ -19,6 +25,13 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
+"Folding
+augroup vimrc
+	au BufReadPre * setlocal foldmethod=indent
+	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+
+set grepprg=grep\ -nH\ $*
 
 " Don't wake up system with blinking cursor:
 " http://www.linuxpowertop.org/known.php

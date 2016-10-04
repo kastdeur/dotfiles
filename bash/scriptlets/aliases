@@ -20,6 +20,8 @@ alias l='ls -CF'
 # Use vim if possible instead of vi
 if [[ $(command -v vim) ]]; then
 	alias vi='vim'
+else
+	alias vim='vi'
 fi
 
 # Reload bashrc
