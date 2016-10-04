@@ -8,6 +8,7 @@
 - link:
     ~/.bashrc: bash/bashrc
     ~/.gitconfig: git/gitconfig
+    ~/.gitignore_global: git/gitignore_global
     ~/.ncmpcpp/config: ncmpcpp/config
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config

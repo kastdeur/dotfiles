@@ -8,3 +8,5 @@
 	default = matching
 [diff "pdf"]
 	textconv = pdf2txt
+[core]
+	excludesfile = ~/.gitignore_global
