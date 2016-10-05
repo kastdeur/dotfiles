@@ -1,4 +1,0 @@
-# Add iraf setup commands
-if [ -e /home/ericteunis/.iraf/setup.sh ]; then
-    source /home/ericteunis/.iraf/setup.sh
-fi

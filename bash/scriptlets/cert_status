@@ -1,5 +1,0 @@
-# Report on last renewing of ssl certificates
-CERTSTAT=~/cert_status
-if [ -r $CERTSTAT ]; then
-	echo "Last certs: $(cat $CERTSTAT)";
-fi;

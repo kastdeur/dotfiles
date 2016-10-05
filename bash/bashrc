@@ -24,10 +24,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Load main things
-if [ -d "$DOTBASH/scriptlets" ]; then
+if [ -d "$DOTBASH/bash.d" ]; then
 	for f in colours aliases history ps1
 	do
-		source "$DOTBASH/scriptlets/$f"
+		source "$DOTBASH/bash.d/$f"
 	done
 fi
 
