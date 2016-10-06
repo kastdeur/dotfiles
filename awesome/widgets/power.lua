@@ -7,15 +7,17 @@ powercfg.widget = wibox.widget.textbox()
 powercfg.widget:set_align("right");
 
 powercfg.update = function ()
-	local fd = io.popen("acpi | cut -d ':' -f 2")
-	local status = fd:read("*all")
-	fd:close()
+	--local fd = io.popen("acpi | cut -d ':' -f 2")
+	--local status = fd:read("*all")
+	--fd:close()
 	
-	local power = tonumber(string.match(status, "%d+")) 
-	stats = string.match(status,"(%s+),")
+	--local power = tonumber(string.match(status, "%d+")) 
+	--stats = string.match(status,"(%s+),")
 --	local charging = false
 --
---	
+--
+	stats = '1'
+	power = ''
 	local colour = 'blue'
 --	-- colours (start and end)
 --	local sr, sg, sb = 0x3F,0x3F,0x3F
@@ -48,6 +50,9 @@ end
 
 -- start updating it
 powercfg.update()
+-- start timer
 powercfg.timer = timer({ timeout = 1})
 powercfg.timer:connect_signal("timeout", function () powercfg.update() end)
 powercfg.timer:start()
+
+return powercfg

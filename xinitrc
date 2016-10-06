@@ -22,39 +22,41 @@ fi
 
 
 # Load session
-DEFAULT_SESSION=awesome
+DEFAULT_SESSION="awesome >> $HOME/.cache/awesome/stdout 2>> $HOME/.cache/awesome/stderr"
 XTERM=xterm
 case $1 in
 	xfce4)
-		exec startxfce4
+		RUN=startxfce4
 		;;
 	awesome)
 		xscreensaver -nosplash &
 		nm-applet &
-		exec awesome >> $HOME/.cache/awesome/stdout 2>> $HOME/.cache/awesome/stderr
+		RUN=awesome
 		;;
 	enlightenment)
-		exec enlightenment_start
+		RUN=enlightenment_start
 		;;
 	openbox)
-		exec openbox
+		RUN=openbox
 		;;
 	cinnamon)
-		exec cinnamon
+		RUN=cinnamon
 		;;
 	kde)
-		exec startkde
+		RUN=startkde
 		;;
 	gnome)
-		exec gnome-session
+		RUN=gnome-session
 		;;
 	unity)
-		exec unity
+		RUN=unity
 		;;
 	xterm)
-		exec xterm
+		RUN=xterm
 		;;
 	*)
-		exec $DEFAULT_SESSION
+		RUN=$DEFAULT_SESSION
 		;;
 esac
+
+exec "$RUN" || exec "$XTERM"

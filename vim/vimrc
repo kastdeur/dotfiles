@@ -16,20 +16,19 @@ if &term=="xterm"
      set t_Sf=^[[3%dm
 endif
 
-"Auto indentation
+"Auto indentation, just "za" needed
 filetype indent on
 
 " Set tabbing stuff
-set autoindent
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
 "Folding
-augroup vimrc
-	au BufReadPre * setlocal foldmethod=indent
-	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-augroup END
+"augroup vimrc
+"	au BufReadPre * setlocal foldmethod=indent
+"	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+"augroup END
 
 set grepprg=grep\ -nH\ $*
 

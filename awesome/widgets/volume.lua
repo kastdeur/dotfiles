@@ -28,7 +28,7 @@ volumecfg.mixercommand = function (command)
 	local er, eg, eb = 0xDC, 0xDC, 0xCC
 	
 	if string.find(status, "on", 1, true) then
-		color = 'blue'
+		color = 'grey'
 		mute = '♪'
 	else
 		sr, sg, sb = 0xFF, 0x33, 0xAA
@@ -69,6 +69,9 @@ volumecfg.widget:buttons(awful.util.table.join(
 ))
 -- start updating
 volumecfg.update()
+-- start timer
 mytimer = timer({ timeout = 1 })
 mytimer:connect_signal("timeout", function () volumecfg.update() end)
 mytimer:start()
+
+return volumecfg
