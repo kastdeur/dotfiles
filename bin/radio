@@ -1,0 +1,100 @@
+#!/bin/bash
+# Listen to a (radio) stream
+# @author: Eric Teunis de Boone, edeboone@science.ru.nl
+trap "echo Aborted!; exit;" SIGINT SIGTERM
+MPLAYER='mplayer'
+
+# ---------------------------------------------
+# Radio definitions
+# ---------------------------------------------
+RADIOS="Jamendo Veronica"
+
+# Jamendo
+JAMENDOSTREAMS="Rock Electro Pop Jazz Lounge Classical Relaxation Folk Metal Indie HipHop Country"
+JAMENDOURL='http://streaming.radionomy.com/Jam'
+
+# Veronica
+VERONICAURL='http://8633.live.streamtheworld.com/VERONICA.mp3'
+
+# Let's go do things
+usage() {
+	cat <<-Usage
+	usage: $0 [-h|--help] [-b] [-p player] [ -V | -j [${JAMENDOSTREAMS//\ /\|}]]
+	-h|--help show this help
+	-p player to use
+	-j jamendo [GENRE]
+	-V Radio Veronica
+	-b put into background
+Usage
+}
+while [[ $# > 0 ]]
+do
+	case "$1" in
+		-h|--help|--usage)
+			usage
+			exit
+		;;
+		-b)
+			echo "backgrounded"
+			BACKGROUND="\&"
+		;;
+		-V|-v)
+			RADIO="Veronica"
+		;;
+		-j)
+			RADIO="Jamendo"
+			STREAM=$2
+			shift
+		;;
+		-p)
+			MPLAYER=$2
+			shift
+		;;
+	esac
+	shift
+done
+
+# choose radio
+if [ -z $RADIO ]
+then
+	echo "Radio:"
+	select RADIO in $RADIOS
+	do
+		RADIO=$RADIO
+		break
+	done
+fi
+
+# define urls and streams if needed
+case $RADIO in
+	Veronica)
+		URL=$VERONICAURL
+	;;
+	Jamendo)
+		URL=$JAMENDOURL
+		STREAMS=$JAMENDOSTREAMS
+	;;
+esac
+
+# if there are streams, check whether we actually use one
+if [ -n "$STREAMS" ]
+then
+	if [ -z "$STREAM" ]
+	then
+		echo "What stream do you want to listen to:"
+		select STREAM in $STREAMS;
+		do
+			STREAM=$STREAM
+			break
+		done
+	elif [[ ! $STREAM =~ $STREAMS ]]
+	then
+		echo "Genre must be one of '${STREAMS}'"
+		exit 1
+	fi
+	URL="$URL$STREAM"
+fi
+
+
+# Cue the audio
+$MPLAYER "$URL" $BACKGROUND
