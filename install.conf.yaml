@@ -6,7 +6,8 @@
 - clean: ['~']
 
 - link:
-    ~/.bashrc: bash/bashrc
+    ~/.bashrc: bash/rc
+    ~/.bash_profile: bash/profile
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.ncmpcpp/config: ncmpcpp/config

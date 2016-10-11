@@ -51,11 +51,17 @@ function __prompt_command() {
 	if [ -n $RETVAL ]; then
 		PS1+="$(retval ${RETVAL})"
 	fi
+
+### Add amount of jobs ###
+	if true; then
+		PS1+="$(jobscount)"
+	fi
+	
 ### Add Git Status ### 
 	if [[ $(command -v git) ]]; then
 		PS1+="$(git_status) "
 	fi
-	
+
 
 #user@hostname
 	if color ; then
@@ -73,6 +79,7 @@ function __prompt_command() {
 			'fatserf')	PS1+="${Pur}\H${RCol}";;
 			'lilo'*)	PS1+="${BWhi}\H${RCol}";;
 			'hg'*)	PS1+="${BRed}\H${RCol}";;
+			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\H${RCol}";;
 			*)	PS1+="${Blu}${On_Whi}\H${RCol}";;
 		esac
 	else 
@@ -118,7 +125,14 @@ function retval() {
 		fi
 	fi
 
-	echo "${PS1} "
+	echo "${PS1}"
+}
+
+### count jobs
+function jobscount() {
+  local stopped=$(jobs -sp | wc -l)
+  local running=$(jobs -rp | wc -l)
+  ((running+stopped)) && echo -n "${IYel}${running}${RCol}|${Yel}${stopped}${RCol}"
 }
 
 function git_status() {
@@ -134,7 +148,7 @@ function git_status() {
 				## Check if more than 60 minutes since last
 				if [ "${TIME}" -gt "3600" ]; then
 					git fetch 2>/dev/null
-					PS1+=' +'
+					PS1+='+ '
 					## Refresh var
 					local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
 				fi
@@ -162,7 +176,7 @@ function git_status() {
 			fi
 			### End Branch ### }}}
 
-			PS1+=" ${GitCol}[$GBra]${RCol}"	# Add result to prompt
+			PS1+="${GitCol}[$GBra]${RCol}"	# Add result to prompt
 
 			### Find Commit Status ### {{{
 				## Test Modified and Untracked for "0"

@@ -30,7 +30,7 @@ then
 fi
 
 # Source Bashrc if BASH
-if [ "$BASH" ] && [ -f $DOTFILES/bash/bashrc ]
+if [ "$BASH" ] && [ -f $DOTFILES/bash/rc ]
 then
-	source $DOTFILES/bash/bashrc
+	source $DOTFILES/bash/rc
 fi
