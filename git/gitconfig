@@ -10,3 +10,5 @@
 	textconv = pdf2txt
 [core]
 	excludesfile = ~/.gitignore_global
+[color]
+	ui = auto
