@@ -57,10 +57,10 @@ done
 # choose radio
 if [ -z $RADIO ]
 then
-	echo "Radio:"
+	echo "Which radio?:"
 	select RADIO in $RADIOS
 	do
-		RADIO=$RADIO
+		echo "You chose: ${RADIO}"
 		break
 	done
 fi
@@ -84,7 +84,7 @@ then
 		echo "What stream do you want to listen to:"
 		select STREAM in $STREAMS;
 		do
-			STREAM=$STREAM
+			echo "You chose: ${STREAM}"
 			break
 		done
 	elif [[ ! $STREAM =~ $STREAMS ]]

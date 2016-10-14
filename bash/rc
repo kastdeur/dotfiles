@@ -2,9 +2,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Make sure we get system-wide first
+if [ -r /etc/bash.bashrc ]; then
+	source /etc/bash.bashrc
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Make sure we do have profile sourced, otherwise source it
 [ -z "$DOTFILES" ] && source ~/.profile
 ##
 [ -z "$DOTFILES" ] && echo ".profile missing" && exit 1
@@ -20,21 +26,18 @@ DOTBASH="$DOTFILES/bash"
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
 fi
 
 # Load main things
 if [ -d "$DOTBASH/bash.d" ]; then
-	for f in colours aliases history ps1
+	for f in colours aliases history 00-marietje ps1
 	do
-		source "$DOTBASH/bash.d/$f"
+		if [ -r "$DOTBASH/bash.d/$f" ]; then
+			source "$DOTBASH/bash.d/$f"
+		fi
 	done
 fi
-
-# Try custom bashrc
-#if [[ $HOSTNAME == 'hg'* && -r "hg.bashrc"]]; then
-#	source "hg.bashrc"
-#fi
 
 # Try hostname bashrcs
 if [ -r "$DOTBASH/$HOSTNAME.bashrc" ]; then
