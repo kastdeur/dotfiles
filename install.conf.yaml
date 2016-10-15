@@ -11,6 +11,7 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.ncmpcpp/config: ncmpcpp/config
+    ~/.ncmpcpp/bindings: ncmpcpp/bindings
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config
     ~/.tmux: tmux
