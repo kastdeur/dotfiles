@@ -76,6 +76,7 @@ function __prompt_command() {
 		case "$HOSTNAME" in
 			'maclean')	PS1+="${IGre}\H${RCol}";;
 			'beatmaker')	PS1+="${Gre}\H${RCol}";;
+			'beatmachine') PS1+="${Blu}\H${RCol}";;
 			'fatserf')	PS1+="${Pur}\H${RCol}";;
 			'lilo'*)	PS1+="${BWhi}\H${RCol}";;
 			'hg'*)	PS1+="${BRed}\H${RCol}";;
