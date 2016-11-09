@@ -30,6 +30,9 @@ set noexpandtab
 "	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 "augroup END
 
+" search for visually hightlighted text
+vnoremap <c-f> y<ESC>/<c-r>"<CR>   
+
 set grepprg=grep\ -nH\ $*
 
 " Don't wake up system with blinking cursor:
