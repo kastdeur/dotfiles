@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/edeboone/Documents/SpaceAstronomy/1516'
-let g:netrw_dirhist_2='/home/edeboone/Documents/SpaceAstronomy/1516/p3'
-let g:netrw_dirhist_3='/home/edeboone/Documents/SpaceAstronomy/1516/p3/a'
