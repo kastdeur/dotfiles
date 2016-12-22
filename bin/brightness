@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ ! -z $2 ];
+then
+	disp=$1
+	bright=$2
+else
+	echo "Available displays:"
+	xrandr -q | grep " connected"
+
+	echo "What display to use?"
+	read disp
+
+	echo "Brightness[0-1]:"
+	read bright
+fi
+
+xrandr --output $disp --brightness $bright

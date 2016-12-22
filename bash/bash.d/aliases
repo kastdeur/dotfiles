@@ -35,5 +35,5 @@ alias ~='cd ~'
 alias ..='cd ..'
 
 # Computer control
-alias blank='xset dpms force off'
+alias blank='sleep 1s && xset dpms force off'
 alias lock='blank; xscreensaver-command --lock'
