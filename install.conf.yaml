@@ -19,6 +19,7 @@
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: xinitrc
     ~/.config/awesome: awesome
+    ~/.config/redshift.conf: redshift/redshift.conf
 
 #- shell:
 #  - git submodules update # after linking ~/.gitconfig
