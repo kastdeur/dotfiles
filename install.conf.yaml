@@ -10,6 +10,9 @@
     ~/.bash_profile: bash/profile
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
+    ~/.config/geany/geany.conf: geany/geany.conf
+    ~/.config/geany/keybindings.conf: geany/keybindings.conf
+    ~/.config/geany/filedefs: geany/filedefs
     ~/.ncmpcpp/config: ncmpcpp/config
     ~/.ncmpcpp/bindings: ncmpcpp/bindings
     ~/.profile: profile.sh
