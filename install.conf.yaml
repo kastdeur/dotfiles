@@ -21,6 +21,7 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: xinitrc
+    ~/.xsession: xsession
     ~/.config/awesome: awesome
     ~/.config/redshift.conf: redshift/redshift.conf
 
