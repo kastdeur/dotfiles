@@ -1,6 +1,12 @@
 #!/bin/bash
 disps=$(xrandr -q | grep " connected")
 
+if [ "$1"	= '-h' ];
+then
+	echo $0 '[-h] [displaycode,[ brightness]]'
+	exit
+fi
+
 if [ ! -z $2 ];
 then
 	disp=$1
