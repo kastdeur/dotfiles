@@ -178,8 +178,8 @@ def_key "down"
 #def_key "end"
 #  move_end
 #
-def_key "space"
-  press_space
+#def_key "space"
+#  press_space
 #
 def_key "enter"
   press_enter

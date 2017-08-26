@@ -1,0 +1,8 @@
+#! /bin/bash
+systemctl status sshd
+systemctl status mpd
+systemctl status nginx
+systemctl status mariadb
+systemctl status postfix
+systemctl status dovecot
+#systemctl status 

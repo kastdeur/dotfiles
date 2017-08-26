@@ -14,3 +14,7 @@
 	ui = auto
 [merge]
 	conflictstyle = diff3
+[branch]
+	autosetuprebase = always
+[diff]
+	tool = vimdiff

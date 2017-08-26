@@ -77,7 +77,7 @@ function __prompt_command() {
 			'maclean')	PS1+="${IGre}\H${RCol}";;
 			'beatmaker')	PS1+="${Gre}\H${RCol}";;
 			'blacksmith'|'beatmachine') PS1+="${Blu}\H${RCol}";;
-			'fatserf')	PS1+="${Pur}\H${RCol}";;
+			'locksmith'|'fatserf')	PS1+="${Pur}\H${RCol}";;
 			'lilo'*)	PS1+="${BWhi}\H${RCol}";;
 			'hg'*)	PS1+="${BRed}\H${RCol}";;
 			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\H${RCol}";;
