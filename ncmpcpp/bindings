@@ -180,10 +180,9 @@ def_key "down"
 #
 #def_key "space"
 #  press_space
+#def_key "enter"
+#  press_enter
 #
-def_key "enter"
-  press_enter
-
 #def_key "delete"
 #  delete_playlist_items
 #
@@ -226,47 +225,47 @@ def_key "left"
 #def_key "shift_tab"
 #  previous_screen
 #
-#def_key "f1"
-#  show_help
+def_key "`"
+  show_help
 #
-#def_key "1"
-#  show_playlist
+def_key "1"
+  show_playlist
 #
-#def_key "2"
-#  show_browser
+def_key "2"
+  show_browser
 #
-#def_key "2"
-#  change_browse_mode
+def_key "2"
+  change_browse_mode
 #
-#def_key "3"
-#  show_search_engine
+def_key "3"
+  show_search_engine
 #
-#def_key "3"
-#  reset_search_engine
+def_key "3"
+  reset_search_engine
 #
-#def_key "4"
-#  show_media_library
+def_key "4"
+  show_media_library
 #
-#def_key "4"
-#  toggle_media_library_columns_mode
+def_key "4"
+  toggle_media_library_columns_mode
 #
-#def_key "5"
-#  show_playlist_editor
+def_key "5"
+  show_playlist_editor
 #
-#def_key "6"
-#  show_tag_editor
+def_key "6"
+  show_tag_editor
 #
-#def_key "7"
-#  show_outputs
+def_key "7"
+  show_outputs
 #
-#def_key "8"
-#  show_visualizer
+def_key "8"
+  show_visualizer
 #
 def_key "+"
   show_clock
 
-#def_key "@"
-#  show_server_info
+def_key "@"
+  show_server_info
 #
 def_key "s"
   stop
@@ -283,7 +282,7 @@ def_key "<"
 #def_key "ctrl_h"
 #  jump_to_parent_directory
 #
-def_key "ctrl_h"
+def_key "ctrl-h"
   replay_song
 #
 #def_key "backspace"
@@ -304,11 +303,11 @@ def_key "f"
 def_key "b"
   seek_backward
 #
-#def_key "r"
-#  toggle_repeat
+def_key "r"
+  toggle_repeat
 #
-#def_key "z"
-#  toggle_random
+def_key "z"
+  toggle_random
 #
 #def_key "y"
 #  save_tag_changes
@@ -316,11 +315,11 @@ def_key "b"
 #def_key "y"
 #  start_searching
 #
-#def_key "y"
-#  toggle_single
+def_key "y"
+  toggle_single
 #
-#def_key "R"
-#  toggle_consume
+def_key "R"
+  toggle_consume
 #
 #def_key "Y"
 #  toggle_replay_gain_mode
@@ -337,8 +336,8 @@ def_key "b"
 #def_key "#"
 #  toggle_bitrate_visibility
 #
-#def_key "Z"
-#  shuffle
+def_key "Z"
+  shuffle
 #
 #def_key "x"
 #  toggle_crossfade
@@ -346,10 +345,10 @@ def_key "b"
 #def_key "X"
 #  set_crossfade
 #
-#def_key "u"
-#  update_database
+def_key "u"
+  update_database
 #
-def_key "ctrl_v"
+def_key "ctrl-v"
   sort_playlist
 #
 #def_key "ctrl_r"
@@ -511,6 +510,5 @@ def_key "I"
 #def_key "ctrl_p"
 #  set_selected_items_priority
 #
-#def_key "q"
-#  quit
-#
+def_key "q"
+  quit

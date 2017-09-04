@@ -24,7 +24,7 @@ lyrics_directory = ~/.lyrics
 #
 ##### connection settings #####
 #
-mpd_host = fatserf.thuis
+mpd_host = locksmith.thuis
 #
 mpd_port = 6600
 #
@@ -401,7 +401,7 @@ media_library_primary_tag = album_artist
 ## Note: You can define startup screen for ncmpcpp
 ## by choosing screen from the list above.
 ##
-#startup_screen = playlist
+startup_screen = playlist
 #
 ##
 ## Default width of locked screen (in %).
@@ -416,9 +416,9 @@ media_library_primary_tag = album_artist
 #
 #ask_before_clearing_playlists = yes
 #
-#clock_display_seconds = no
+clock_display_seconds = no
 #
-#display_volume_level = yes
+display_volume_level = yes
 #
 #display_bitrate = no
 #
@@ -433,7 +433,7 @@ media_library_primary_tag = album_artist
 ## "The" word while sorting items in browser, tags in
 ## media library, etc.
 ##
-#ignore_leading_the = no
+ignore_leading_the = no
 #
 #block_search_constraints_change_if_items_found = yes
 #
@@ -463,13 +463,13 @@ enable_window_title = yes
 ##       in database and local one for searching in current playlist)
 ##
 #
-#search_engine_default_search_mode = 1
+search_engine_default_search_mode = 1
 #
 external_editor = vim
 #
 ## Note: set to yes if external editor is a console application.
 ##
-#use_console_editor = yes
+use_console_editor = yes
 #
 ##### colors definitions #####
 #
@@ -493,9 +493,9 @@ colors_enabled = yes
 #
 #main_window_highlight_color = yellow
 #
-#progressbar_color = black
+progressbar_color = black
 #
-#progressbar_elapsed_color = green
+progressbar_elapsed_color = green
 #
 #statusbar_color = default
 #
