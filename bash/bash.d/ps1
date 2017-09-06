@@ -73,18 +73,18 @@ function __prompt_command() {
 	PS1+="@"
 
 	if color ; then
-		case "$HOSTNAME" in
-			'maclean')	PS1+="${IGre}\H${RCol}";;
-			'tinsmith'|'beatmaker')	PS1+="${Gre}\H${RCol}";;
-			'blacksmith'|'beatmachine') PS1+="${Blu}\H${RCol}";;
-			'locksmith'|'fatserf')	PS1+="${Pur}\H${RCol}";;
-			'lilo'*)	PS1+="${BWhi}\H${RCol}";;
-			'hg'*)	PS1+="${BRed}\H${RCol}";;
-			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\H${RCol}";;
-			*)	PS1+="${Blu}${On_Whi}\H${RCol}";;
+		case "${HOSTNAME%%.*}" in
+			'maclean')	PS1+="${IGre}\h${RCol}";;
+			'tinsmith')	PS1+="${Gre}\h${RCol}";;
+			'blacksmith') PS1+="${Blu}\h${RCol}";;
+			'locksmith')	PS1+="${Pur}\h${RCol}";;
+			'lilo'*)	PS1+="${BWhi}\h${RCol}";;
+			'hg'*)	PS1+="${BRed}\h${RCol}";;
+			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\h${RCol}";;
+			*)	PS1+="${Blu}${On_Whi}\h${RCol}";;
 		esac
 	else 
-		PS1+="\H"
+		PS1+="\h"
 	fi
 
 #time w/ seconds
@@ -109,8 +109,13 @@ function __prompt_command() {
 		PS1+="${RCol}"
 	fi
 	PS1+=" "
+## Short prompt
+	if [ -n "${SHORTPS1}" ]; then
+		PS1+="\r\n"
+	fi
 #UID
 	PS1+=':\$ '
+
 }
 
 function retval() {
