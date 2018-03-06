@@ -17,6 +17,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Make sure we have the VTE thing when we define our prompt command
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+
+    source /etc/profile.d/vte.sh
+fi
+
 # Old PS1
 #if [ "$color_prompt" = yes ]; then
 #	PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\H\[\033[00m\] \[\033[0;33;40m\](\t)\[\033[00m\] \[\033[01;34m\]\[$(ls |wc -l)\]@\W\[\033[00m\]:\$ '
@@ -34,6 +41,12 @@ function color() {
 		fi
 	else
 		return 1
+	fi
+}
+
+function vte_thing() {
+	if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+		__vte_osc7
 	fi
 }
 
@@ -78,6 +91,7 @@ function __prompt_command() {
 			'tinsmith')	PS1+="${Gre}\h${RCol}";;
 			'blacksmith') PS1+="${Blu}\h${RCol}";;
 			'locksmith')	PS1+="${Pur}\h${RCol}";;
+			'gunsmith')	PS1+="${Red}\h${RCol}";;
 			'lilo'*)	PS1+="${BWhi}\h${RCol}";;
 			'hg'*)	PS1+="${BRed}\h${RCol}";;
 			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\h${RCol}";;
@@ -115,6 +129,9 @@ function __prompt_command() {
 	fi
 #UID
 	PS1+=':\$ '
+
+# Something for VTE
+	PS1+=$(vte_thing)
 
 }
 
