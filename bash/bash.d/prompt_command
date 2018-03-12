@@ -87,7 +87,7 @@ function __prompt_command() {
 
 	if color ; then
 		case "${HOSTNAME%%.*}" in
-			'maclean')	PS1+="${IGre}\h${RCol}";;
+			'esson')	PS1+="${IGre}\h${RCol}";;
 			'tinsmith')	PS1+="${Gre}\h${RCol}";;
 			'blacksmith') PS1+="${Blu}\h${RCol}";;
 			'locksmith')	PS1+="${Pur}\h${RCol}";;
