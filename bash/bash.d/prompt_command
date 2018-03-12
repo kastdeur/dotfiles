@@ -19,10 +19,9 @@ fi
 
 # Make sure we have the VTE thing when we define our prompt command
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-
-    source /etc/profile.d/vte.sh
-fi
+#if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    #source /etc/profile.d/vte.sh
+#fi
 
 # Old PS1
 #if [ "$color_prompt" = yes ]; then
@@ -45,9 +44,10 @@ function color() {
 }
 
 function vte_thing() {
-	if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-		__vte_osc7
-	fi
+#	if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+	#	__vte_osc7
+#	fi
+	true
 }
 
 export PROMPT_COMMAND=__prompt_command
