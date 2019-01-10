@@ -9,6 +9,11 @@ then
 	addpath "$DOTBIN"
 fi
 
+if [ -d "~/.local/bin" ]
+then
+	addpath "~/.local/bin"
+fi
+
 
 # Always try to use vi(m) if possible
 export EDITOR="vi"
