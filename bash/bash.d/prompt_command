@@ -95,6 +95,7 @@ function __prompt_command() {
 			'lilo'*)	PS1+="${BWhi}\h${RCol}";;
 			'hg'*)	PS1+="${BRed}\h${RCol}";;
 			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\h${RCol}";;
+			'messier'*) PS1+="${Blu}Astro:${Red}\h${RCol}";;
 			*)	PS1+="${Blu}${On_Whi}\h${RCol}";;
 		esac
 	else 
