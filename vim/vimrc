@@ -25,6 +25,9 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 
+" Show whitespace in characters (toggle with set list)
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+
 "Folding
 "augroup vimrc
 "	au BufReadPre * setlocal foldmethod=indent
