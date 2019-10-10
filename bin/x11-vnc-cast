@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Share a part of an unseen screen to a vncviewer at host
+#
+# On HOST, please use:
+# startx -- /usr/bin/vncviewer -listen 5500 -ViewOnly -Shared
+
+OUTPUT="VGA-1"
+HOST="192.168.6.5"
+ORIENTATION=" --left-of LVDS-1"
+
+# Screen Properties
+YEXT=1920
+YOFF="+0"
+XEXT=1200
+XOFF="+600"
+REFRESH=60.00
+
+
+# Generate a valid modeline
+modeline=$(cvt $YEXT $XEXT $REFRESH | grep "Modeline")
+
+MODENAME=$(echo $modeline | sed -e "s#Modeline ##" | awk '{print $1}' | sed -e 's#"##g')
+MODELINE=$(echo $modeline | cut -d ' ' -f3- )
+
+##################################################################
+# All of the Voodoo
+##################################################################
+# Add modeline
+xrandr --newmode $MODENAME $MODELINE
+
+# Add modeline to unused output
+xrandr --addmode $OUTPUT $MODENAME
+
+# set mode and orientation for output
+xrandr --output $OUTPUT --mode $MODENAME $ORIENTATION
+
+# Start vncserver, push to host
+x11vnc -cursor -clip ${MODENAME}${XOFF}${YOFF} -connect_or_exit $HOST
+
+# Disable output
+xrandr --output $OUTPUT --auto
+# remove  from output
+xrandr --delmode $OUTPUT $MODENAME
+# remove from server
+xrandr --rmmode $MODENAME
+
