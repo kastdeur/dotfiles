@@ -1,0 +1,20 @@
+! General styling
+*background: #3d3d3d
+*foreground: #99aa99
+
+! XTerm
+xterm*dynamiccolors:      true
+xterm*utf8:               2
+xterm*geometry:           WINDOWGEOMETRY
+xterm*visualBell:         on
+xterm*highlightSelection: true
+!xterm*background:      lightblack
+!xterm*foreground:      lightblue
+!xterm*colorMode:       on
+!xterm*colorBD:         lightcyan
+!xterm*colorBDMode:     on
+!xterm*colorUL:         white
+!xterm*colorULMode:     on
+!xterm*scrollTtyOutput: false
+!xterm*scrollKey:       true
+!xterm*scrollBar:       true

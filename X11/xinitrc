@@ -19,6 +19,18 @@ fi
 #	 OWN
 # ---------------------------------------------------------------
 
+# Load Main Xresources
+[ -f ~/.Xresources ] && xrdb -merge $HOME/.Xresources
+
+# Load specific Xresources
+XRESD="$HOME/.Xresources.d/"
+for f in "$XRESD*"
+do
+	xrdb -merge "$f"
+done
+
+numlockx on # turn on numlock
+setxkbmap -option caps:escape # caps lock works as escape
 
 
 # Load session
