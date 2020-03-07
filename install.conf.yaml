@@ -23,6 +23,7 @@
     ~/.xinitrc: X11/xinitrc
     ~/.xsession: X11/xsession
     ~/.Xresources: X11/Xresources
+    ~/.Xresources.d/urxvt: urxvt/Xresources
     ~/.config/user-dirs.dirs: X11/user-dirs.dirs
     ~/.config/awesome: awesome
     ~/.config/redshift.conf: redshift/redshift.conf

@@ -1,0 +1,27 @@
+! URxvt
+URxvt*loginShell: true
+URxvt*scrollBar: false
+URxvt*scrollBar_right: true
+
+!! URxvt Styling
+URxvt*foreground: #4ad5e1
+URxvt*boldFont:
+URxvt*italicFont:
+URxvt*bolditalicFont:
+URxvt*letterSpace: -1
+URxvt*linespace: -1
+URxvt*transparent: false
+!URxvt*inheritPixmap: true
+!URxvt*shading: 80
+
+
+!! URxvt extensions
+URxvt.perl-ext: default,clipboard,url-select
+URxvt.url-select.underline: false
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.autocopy: true
+URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd: xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
