@@ -24,7 +24,7 @@ lyrics_directory = ~/.lyrics
 #
 ##### connection settings #####
 #
-mpd_host = locksmith.thuis
+mpd_host = locksmith.nm.deboone.nl
 #
 mpd_port = 6600
 #

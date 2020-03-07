@@ -1,22 +1,27 @@
-DOTFILES="$HOME/.dotfiles"
-#Add DOTFILES/bin/ to PATH
-DOTBIN="$DOTFILES/bin"
+#
+# ~/.dotfiles/profiles/main.sh
+#
+DOTFILES="$XDG_DOTFILES_DIR"
+
 
 addpath() { case ":${PATH:=$1}:" in *:$1:*) ;; *) PATH="$1:$PATH" ;; esac; }
 
-if [ -d "$DOTBIN" ]
-then
-	addpath "$DOTBIN"
-fi
-
+# add ~/.local/bin to PATH
 if [ -d "~/.local/bin" ]
 then
 	addpath "~/.local/bin"
 fi
 
+# add DOTFILES/bin to PATH
+DOTBIN="$DOTFILES/bin"
+if [ -d "$DOTBIN" ]
+then
+	addpath "$DOTBIN"
+fi
 
-# Always try to use vi(m) if possible
+# use vi(m) if possible
 export EDITOR="vi"
+export VISUAL="vi"
 
 
 # Source Envs
@@ -34,7 +39,7 @@ then
 	done
 fi
 
-# Source Bashrc if BASH
+# if this is BASH source BASHRC
 if [ "$BASH" ] && [ -f $DOTFILES/bash/rc ]
 then
 	source $DOTFILES/bash/rc
