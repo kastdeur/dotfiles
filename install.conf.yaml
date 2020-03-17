@@ -15,6 +15,7 @@
     ~/.config/geany/filedefs: geany/filedefs
     ~/.ncmpcpp/config: ncmpcpp/config
     ~/.ncmpcpp/bindings: ncmpcpp/bindings
+    ~/.mpd/mpd.conf: mpd/mpd.conf
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config
     ~/.tmux: tmux
