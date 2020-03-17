@@ -12,7 +12,7 @@
 ## file which defines that while launching ncmpcpp.
 ##
 #
-ncmpcpp_directory = ~/.ncmpcpp
+ncmpcpp_directory = ~/.config/ncmpcpp
 #
 ##
 ## Directory for storing downloaded lyrics. It
@@ -24,7 +24,7 @@ lyrics_directory = ~/.lyrics
 #
 ##### connection settings #####
 #
-mpd_host = locksmith.nm.deboone.nl
+mpd_host = ~/.config/mpd/socket
 #
 mpd_port = 6600
 #
@@ -52,7 +52,7 @@ mpd_music_dir = /var/lib/mpd/music
 ## }
 ##
 #
-#visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_fifo_path = ~/.config/mpd/mpd.fifo
 #
 ##
 ## Note: Below parameter is needed for ncmpcpp
@@ -62,12 +62,12 @@ mpd_music_dir = /var/lib/mpd/music
 ## are some problems with it.
 ##
 #
-#visualizer_output_name = Visualizer feed
+visualizer_output_name = Visualizer feed
 #
 ##
 ## If you set format to 44100:16:2, make it 'yes'.
 ##
-#visualizer_in_stereo = yes
+visualizer_in_stereo = yes
 #
 ##
 ## Multiply received samples by given value. Very

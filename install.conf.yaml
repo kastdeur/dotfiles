@@ -16,6 +16,8 @@
     ~/.ncmpcpp/config: ncmpcpp/config
     ~/.ncmpcpp/bindings: ncmpcpp/bindings
     ~/.mpd/mpd.conf: mpd/mpd.conf
+    ~/.config/mpDris2/mpDris2.conf: mpd/mpDris2.conf
+    ~/.config/systemd/mpDris2.service: mpd/mpDris2.service
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config
     ~/.tmux: tmux
