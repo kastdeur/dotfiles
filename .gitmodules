@@ -1,6 +1,6 @@
 [submodule "dotbot"]
-	path = dotbot
+	path = .dotbot
 	url = https://github.com/anishathalye/dotbot
 [submodule "password-store"]
-	path = password-store
+	path = .password-store
 	url = https://git.zx2c4.com/password-store
