@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Eric Teunis de Boone
-	email = ericteunis@gmail.com
+	email = ericteunis@deboone.nl
 [gui]
 	editor = geany
 [push]
