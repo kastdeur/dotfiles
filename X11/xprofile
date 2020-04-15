@@ -1,0 +1,25 @@
+#~/bin/sh
+
+# This file is the equivalent of .profile when using X.
+# It is hopefully sourced by the DE. 
+# It is definitely sourced from .xinitrc 
+
+# Merge the Main Xresources
+[ -f ~/.Xresources ] && xrdb -merge $HOME/.Xresources
+
+# Turn on numlock
+numlockx on
+
+# Caps Lock works as escape key: whoever uses CapsLock?
+setxkbmap -option caps:escape
+
+# Start redshift if it exists
+if [[ $(command -v redshift) ]]; then
+	redshift &
+fi
+# See if we can set the background using feh
+[ -x ~/.fehbg ] && ~/.fehbg
+
+# Source the local xprofiles
+[ -r ~/.xprofile.local ] && . ~/.xprofile.local
+[ -r ~/.local/.xprofile ] && . ~/.local/.xprofile

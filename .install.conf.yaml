@@ -22,7 +22,7 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: X11/xinitrc
-    ~/.xsession: X11/xsession
+    ~/.xprofile: X11/xprofile
     ~/.Xresources: X11/Xresources
     ~/.Xresources.d/urxvt: urxvt/Xresources
     ~/.config/user-dirs.dirs: X11/user-dirs.dirs

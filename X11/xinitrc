@@ -1,5 +1,11 @@
 #!/bin/sh
-#Standard Stuff
+
+# Default values for session and term
+[ "$1" ] || set -- cinnamon
+
+TERM=urxvt
+
+# Source the Standard Stuff from this machine
 . /etc/X11/xinit/xinitrc-common
 if [ -f $HOME/.Xclients ]; then
     exec $CK_XINIT_SESSION $SSH_AGENT $HOME/.Xclients || \
@@ -15,60 +21,22 @@ else
     [ -x /usr/bin/xterm ] && xterm -geometry 80x50-50+150 &
     [ -x /usr/bin/twm ] && /usr/bin/twm
 fi
-# ---------------------------------------------------------------
-#	 OWN
-# ---------------------------------------------------------------
 
-# Load Main Xresources
-[ -f ~/.Xresources ] && xrdb -merge $HOME/.Xresources
+# Source the xprofile files
+[ -f /etc/xprofile ] && . /etc/xprofile
+[ -f ~/.xprofile ] && . ~/.xprofile
 
-# Load specific Xresources
-XRESD="$HOME/.Xresources.d/"
-for f in "$XRESD*"
-do
-	xrdb -merge "$f"
-done
-
-numlockx on # turn on numlock
-setxkbmap -option caps:escape # caps lock works as escape
-
-
-# Load session
-DEFAULT_SESSION="awesome >> $HOME/.cache/awesome/stdout 2>> $HOME/.cache/awesome/stderr"
-XTERM=xterm
+# Set Desktop or Window Manager
 case $1 in
-	xfce4)
-		RUN=startxfce4
-		;;
-	awesome)
-		xscreensaver -nosplash &
-		nm-applet &
-		RUN=awesome
-		;;
-	enlightenment)
-		RUN=enlightenment_start
-		;;
-	openbox)
-		RUN=openbox
-		;;
-	cinnamon)
-		RUN=cinnamon
-		;;
-	kde)
-		RUN=startkde
-		;;
-	gnome)
-		RUN=gnome-session
-		;;
-	unity)
-		RUN=unity
-		;;
-	xterm)
-		RUN=xterm
-		;;
-	*)
-		RUN=$DEFAULT_SESSION
-		;;
+	cinnamon)	set -- cinnamon-session;;
+	gnome)		set -- gnome-session;;
+	kde)		set -- startkde;;
+	xfce)		set -- xfce4-session;;
+	awesome)	set -- awesome;;
+	enlightenment) set -- enlightenment_start;;
 esac
 
-exec "$RUN" || exec "$XTERM"
+# Run the session, if it doesn't work try TERM,
+# finally fallback to xterm if there's nothing
+exec "$@" || exec "$TERM" || exec xterm
+
