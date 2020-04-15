@@ -19,7 +19,6 @@
     ~/.config/systemd/mpDris2.service: mpd/mpDris2.service
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config
-    ~/.tmux: tmux
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: X11/xinitrc
