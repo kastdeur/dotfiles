@@ -31,7 +31,7 @@ fi
 
 # Load main things
 if [ -d "$DOTBASH/bash.d" ]; then
-	for f in colours aliases history 00-marietje prompt_command password-store
+	for f in colours aliases history prompt_command password-store
 	do
 		if [ -r "$DOTBASH/bash.d/$f" ]; then
 			source "$DOTBASH/bash.d/$f"

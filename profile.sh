@@ -9,3 +9,6 @@ export XDG_DOTFILES_DIR="$HOME/.dotfiles"
 
 # Always source a local profile
 [ -r "$HOME/.profile.local" ] && source "$HOME/.profile.local"
+
+# Also check in .local for a profile
+[ -r "$HOME/.local/profile" ] && source "$HOME/.local/profile"
