@@ -9,7 +9,7 @@
 [diff "pdf"]
 	textconv = pdf2txt
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/ignore
 [color]
 	ui = auto
 [merge]
