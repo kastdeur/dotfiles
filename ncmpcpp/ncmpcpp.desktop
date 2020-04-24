@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=ncmpcpp
+Comment=A client for the Music Player Daemon
+Exec=urxvt -tr -e ncmpcpp

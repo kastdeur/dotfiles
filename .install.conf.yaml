@@ -12,8 +12,9 @@
     ~/.config/git/ignore_global: git/ignore
     ~/.config/geany/keybindings.conf: geany/keybindings.conf
     ~/.config/geany/filedefs: geany/filedefs
-    ~/.ncmpcpp/config: ncmpcpp/config
-    ~/.ncmpcpp/bindings: ncmpcpp/bindings
+    ~/.config/ncmpcpp/config: ncmpcpp/config
+    ~/.config/ncmpcpp/bindings: ncmpcpp/bindings
+    ~/.local/share/applications: ncmpcpp/ncmpcpp.desktop
     ~/.mpd/mpd.conf: mpd/mpd.conf
     ~/.config/mpDris2/mpDris2.conf: mpd/mpDris2.conf
     ~/.config/systemd/mpDris2.service: mpd/mpDris2.service
