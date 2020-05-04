@@ -7,9 +7,9 @@ DOTFILES="$XDG_DOTFILES_DIR"
 addpath() { case ":${PATH:=$1}:" in *:$1:*) ;; *) PATH="$1:$PATH" ;; esac; }
 
 # add ~/.local/bin to PATH
-if [ -d "~/.local/bin" ]
+if [ -d "$HOME/.local/bin" ]
 then
-	addpath "~/.local/bin"
+	addpath "$HOME/.local/bin"
 fi
 
 # add DOTFILES/bin to PATH

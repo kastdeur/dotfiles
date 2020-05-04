@@ -1,10 +1,6 @@
 # Include separate configs from ~/.ssh/config.d/
 Include ~/.ssh/config.d/*
 
-# Github
-Host github.com
-User git
-
 # Defaults
 Host *
 IdentitiesOnly yes
