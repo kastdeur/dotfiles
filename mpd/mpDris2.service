@@ -2,7 +2,7 @@
 Description=mpDris2 - Music Player Daemon D-Bus bridge
 Wants=mpd.service
 After=mpd.service
-Requires=dbus.service
+Requires=dbus.service mpd.service
 
 [Service]
 Restart=on-failure

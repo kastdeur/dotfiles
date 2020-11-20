@@ -1,5 +1,6 @@
 # Define XDG_DOTFILES_DIR for easy access
 export XDG_DOTFILES_DIR="$HOME/.dotfiles"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Source main profile
 [ -r "$XDG_DOTFILES_DIR/profiles/main.sh" ] && source "$XDG_DOTFILES_DIR/profiles/main.sh"

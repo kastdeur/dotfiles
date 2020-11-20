@@ -1,0 +1,20 @@
+#!/bin/bash
+
+uptime=$(uptime -p | sed -e 's/up //g')
+
+# Options
+shutdown = " Shutdown"
+reboot   = " Reboot"
+lock     = " Lock"
+
+
+case $chosen in
+	$shutdown)
+		systemctl poweroff
+		;;
+	$reboot)
+		systemctl reboot
+		;;
+	$lock
+		;;
+esac
