@@ -52,6 +52,51 @@ function vte_thing() {
 
 export PROMPT_COMMAND=__prompt_command
 
+function __colored_hostname() {
+    local HOST="${1:-$HOSTNAME}"
+	local color="${2:-$(color)}"
+	local PS1
+
+	if color ; then
+		case "${HOSTNAME%%.*}" in
+			'esson')       PS1+="${IGre}\h${RCol}";;
+			'tinsmith')    PS1+="${Gre}\h${RCol}";;
+			'blacksmith')  PS1+="${Blu}\h${RCol}";;
+			'locksmith')   PS1+="${Pur}\h${RCol}";;
+			'bladesmith')  PS1+="${Yel}\h${RCol}";;
+			'gunsmith')    PS1+="${Red}\h${RCol}";;
+			'goldsmith')   PS1+="${IYel}\h${RCol}";;
+			'lilo'*)       PS1+="${BWhi}\h${RCol}";;
+			'hg'*)         PS1+="${BRed}\h${RCol}";;
+			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\h${RCol}";;
+			'messier'*) PS1+="${Blu}Astro:${Red}\h${RCol}";;
+			*) PS1+="${Blu}${On_Whi}\h${RCol}";;
+		esac
+	else 
+		PS1+="\h"
+	fi
+
+	echo "$PS1"
+}
+
+function __colored_username() {
+    local USER="${1:-$USER}"
+	local color="${2:-$(color)}"
+	local PS1
+
+	if color ; then
+		case "${USER}" in
+			'root') PS1+="${Red}\u${RCol}";;
+			'kastdeur'|'ericteunis')  PS1+="${Gre}\u${RCol}";;
+			*)      PS1+="${Blu}\u${RCol}";;
+		esac
+	else
+		PS1+="\u"
+	fi
+
+	echo "$PS1"
+}
+
 function __prompt_command() {
 	local RETVAL=$?
 	if [ ! $RETVAL -ne 0 ]; then
@@ -78,7 +123,7 @@ function __prompt_command() {
 
 #user@hostname
 	if color ; then
-		PS1+="${Gre}\u${RCol}"
+		PS1+="$(__colored_username)"
 	else
 		PS1+="\u"
 	fi
@@ -86,18 +131,7 @@ function __prompt_command() {
 	PS1+="@"
 
 	if color ; then
-		case "${HOSTNAME%%.*}" in
-			'esson')	PS1+="${IGre}\h${RCol}";;
-			'tinsmith')	PS1+="${Gre}\h${RCol}";;
-			'blacksmith') PS1+="${Blu}\h${RCol}";;
-			'locksmith')	PS1+="${Pur}\h${RCol}";;
-			'gunsmith')	PS1+="${Red}\h${RCol}";;
-			'lilo'*)	PS1+="${BWhi}\h${RCol}";;
-			'hg'*)	PS1+="${BRed}\h${RCol}";;
-			'gouda'|'bunnik'|'houten'|'zandberg'|'bussum'|'baarn') PS1+="${Gre}${On_Whi}HEF:${Blu}${On_Whi}\h${RCol}";;
-			'messier'*) PS1+="${Blu}Astro:${Red}\h${RCol}";;
-			*)	PS1+="${Blu}${On_Whi}\h${RCol}";;
-		esac
+		PS1+="$(__colored_hostname)"
 	else 
 		PS1+="\h"
 	fi
