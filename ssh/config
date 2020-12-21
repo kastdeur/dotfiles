@@ -4,4 +4,4 @@ Include ~/.ssh/config.d/*
 # Defaults
 Host *
 IdentitiesOnly yes
-IdentityFile ~/.ssh/%h
+IdentityFile ~/.ssh/keys/%h
