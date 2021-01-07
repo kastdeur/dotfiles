@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# dotrev
+# Reverse the order of substrings within a dotted string.
+# Example: deboone.nl -> nl.deboone
+
+while [ -n "$1" ]; do
+	tmp="$1"
+	REVHOSTNAME=""
+	while [ -n "$tmp" ]; do
+	    piece="${tmp##*.}."
+	    tmp="${tmp%.*}"
+	    REVHOSTNAME="${REVHOSTNAME}${piece}"
+	    if ! case "$tmp" in *.*) ;; *) false;; esac; then
+	        REVHOSTNAME="${REVHOSTNAME}${tmp}"
+	        unset tmp
+	        unset piece
+	        break;
+	    fi
+	done
+	echo $REVHOSTNAME
+	shift
+done
