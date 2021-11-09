@@ -1,0 +1,3 @@
+# Some git domain such as github.com, gitlab.com, or git.*
+Host git*
+User git
