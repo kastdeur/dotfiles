@@ -1,0 +1,13 @@
+# Separate SSH configurations
+#
+# This directory contains various separate ssh configurations.
+
+# Ordering of various lemmas is important. Therefore, one can use
+# a numeric prefix for ordering.
+#
+# At the time of writing, the current scheme has two priorities:
+# * `20-` domain specific configurations
+# * `30-` host   specific configurations
+#
+# Other prefixes can be added at will as long as the numeric ordering
+# is maintained.

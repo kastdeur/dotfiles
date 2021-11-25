@@ -21,7 +21,8 @@
     ~/.config/systemd/mpDris2.service: mpd/mpDris2.service
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config
-    ~/.ssh/config.d/zz_git_wildcard.config: ssh/config.d/zz_git_wildcard.config
+    ~/.ssh/config.d/00_README: ssh/config.d/00_README
+    ~/.ssh/config.d/99-git_wilcard.config: ssh/config.d/99-git_wilcard.config
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: X11/xinitrc
@@ -31,6 +32,10 @@
     ~/.config/user-dirs.dirs: X11/user-dirs.dirs
     ~/.config/awesome: awesome
     ~/.config/redshift.conf: redshift/redshift.conf
+
+- create:
+    ~/.ssh/keys/:
+        mode: 0700
 
 #- shell:
 #  - git submodules update # after linking ~/.gitconfig
