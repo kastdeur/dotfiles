@@ -21,7 +21,7 @@
     ~/.config/systemd/mpDris2.service: mpd/mpDris2.service
     ~/.profile: profile.sh
     ~/.ssh/config: ssh/config
-    ~/.ssh/config.d/github: ssh/config.d/github
+    ~/.ssh/config.d/zz_git_wildcard.config: ssh/config.d/zz_git_wildcard.config
     ~/.tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: X11/xinitrc
