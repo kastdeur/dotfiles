@@ -27,7 +27,7 @@
     ~/.vimrc: vim/vimrc
     ~/.xinitrc: X11/xinitrc
     ~/.xprofile: X11/xprofile
-    ~/.Xresources: X11/Xresources
+    ~/.Xresources.src: X11/Xresources.src
     ~/.Xresources.d/urxvt: urxvt/Xresources
     ~/.config/user-dirs.dirs: X11/user-dirs.dirs
     ~/.config/awesome: awesome
@@ -37,5 +37,9 @@
     ~/.ssh/keys/:
         mode: 0700
 
-#- shell:
-#  - git submodules update # after linking ~/.gitconfig
+- shell:
+    -
+      command: ./bin/Xresources-preprocess
+      description: Preprocess Xresources.src so that xrdb doesn't have to.
+      stderr: true
+#   - git submodules update # after linking ~/.gitconfig

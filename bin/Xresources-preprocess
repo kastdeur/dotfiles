@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Use the precompiler to allow for `xrdb -nocpp -merge ~/.Xresources`.
+# Inspiration from https://github.com/dolmen/Xresources.edit/blob/1be4f5601b3d4e8befa043386288c64e724ed746/Xresources.edit
+
+fname=.Xresources
+ext=src
+force=
+
+# Initial setup: move $fname to $fname.$ext
+if [ ! -f "$HOME/$fname.$ext" ]; then
+	cat "$HOME/$fname" > "$HOME/$fname.$ext"
+
+	# Make $fname non-writable to discourage direct editing
+	chmod a-wx "$HOME/$fname"
+fi
+
+# Check mtime
+if [ -f "$HOME/$fname" -a "$HOME/$fname" -nt "$HOME/$fname.$ext" ]; then
+	{
+		echo "~/$fname is more recent than ~/$fname.$ext"
+		echo "You have to fix this manually."
+		echo "e.g. touch ~/$fname.$ext"
+	} >&2
+	exit 1
+fi
+
+
+# Run cpp and save the result as ~/$fname
+[ -e "$HOME/$fname" ] && chmod u+w "$HOME/$fname"
+
+{
+	echo '! *************************************************'
+	echo "! Do not edit ~/$fname, but ~/$fname.$ext"
+	echo '! *************************************************'
+	echo '! vim:set ft=xdefaults:'
+	echo '!'
+} > "$HOME/$fname"
+
+cpp "$HOME/$fname.$ext" | tee -a "$HOME/$fname"
+res=$?
+
+# Make $fname non-writable to discourage direct editing
+chmod a-wx "$HOME/$fname"
+exit $res
