@@ -42,4 +42,5 @@
       command: ./bin/Xresources-preprocess
       description: Preprocess Xresources.src so that xrdb doesn't have to.
       stderr: true
+    - [chmod 600 ./ssh/config, Ensure ./ssh/config only read/writable for owner]
 #   - git submodules update # after linking ~/.gitconfig
