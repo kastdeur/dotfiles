@@ -52,21 +52,42 @@ function vte_thing() {
 
 export PROMPT_COMMAND=__prompt_command
 
-function __colored_hostname() {
-    local HOST="${1:-$HOSTNAME}"
+function __PS1_hostname() {
+	# returns a formatted hostname
 	local color="${2:-$(color)}"
-	local PS1
 
-	if color ; then
-		case "${HOST%%.*}" in
-			'locksmith')   PS1+="${Pur}\h${RCol}";;
-			'bladesmith')  PS1+="${Yel}\h${RCol}";;
-			'gunsmith')    PS1+="${Red}\h${RCol}";;
-			'goldsmith')   PS1+="${IYel}\h${RCol}";;
-			*) PS1+="${Blu}${On_Whi}\h${RCol}";;
-		esac
-	else 
-		PS1+="\h"
+	# no colours? no need to run
+	if ! color ; then
+		echo "\h";
+		return
+	fi
+
+	local HOST="${1:-$HOSTNAME}"
+	local PS1
+	local NOMATCH
+	local func_extension="__PS1_hostname_extended"
+
+	# check selected hostnames
+	case "${HOST%%.*}" in
+		'locksmith')   PS1+="${Pur}\h${RCol}";;
+		'bladesmith')  PS1+="${Yel}\h${RCol}";;
+		'gunsmith')    PS1+="${Red}\h${RCol}";;
+		'goldsmith')   PS1+="${IYel}\h${RCol}";;
+		*) NOMATCH=1;;
+	esac
+
+	if [ -n "${NOMATCH}" ]; then
+		if [ x$(type -t "$func_extension") = xfunction ]; then
+			NOMATCH=$($func_extension "$@")
+		fi
+
+		# extended colouring
+		if [ -z "${NOMATCH}" ]; then
+			PS1+="${NOMATCH}"
+		# default colouring
+		else
+			PS1+="${Blu}${On_Whi}\h${RCol}";
+		fi
 	fi
 
 	echo "$PS1"
@@ -124,7 +145,7 @@ function __prompt_command() {
 	PS1+="@"
 
 	if color ; then
-		PS1+="$(__colored_hostname)"
+		PS1+="$(__PS1_hostname)"
 	else 
 		PS1+="\h"
 	fi
