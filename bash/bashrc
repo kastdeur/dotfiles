@@ -47,5 +47,9 @@ fi
 # Always source a local bashrc
 [ -r "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
 
+# Use the local(ly linked) bashrc.private
+[ -r "$HOME/.local/bashrc.private" ] && source "$HOME/.local/bashrc.private"
+
+
 # Also check in .local for a bashrc
 [ -r "$HOME/.local/bashrc" ] && source "$HOME/.local/bashrc"
