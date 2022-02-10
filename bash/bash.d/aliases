@@ -8,6 +8,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    alias ip='ip --color=auto'
 fi
 
 # some more ls aliases
@@ -17,12 +18,19 @@ alias la='ls -A'
 alias lla='ll -A'
 alias l='ls -CF'
 
+# make mkdir nicer
+alias mkdir='mkdir -p -v'
+
 # Use vim if possible instead of vi
 if [[ $(command -v vim) ]]; then
 	alias vi='vim'
 else
 	alias vim='vi'
 fi
+alias e="${EDITOR:-vi}"
+
+# Alias expansion in sudo arguments
+alias sudo='sudo '
 
 # Reload bashrc
 alias bashreload="source ~/.bashrc"
@@ -33,6 +41,7 @@ alias pc='python -ic "from __future__ import division; from math import *"'
 # Moving around
 alias ~='cd ~'
 alias ..='cd ..'
+alias ...='cd ../../'
 
 # Computer control
 alias blank='sleep 1s && xset dpms force off'
