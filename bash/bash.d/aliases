@@ -46,3 +46,7 @@ alias ...='cd ../../'
 # Computer control
 alias blank='sleep 1s && xset dpms force off'
 alias lock='blank; xscreensaver-command --lock'
+
+# whatever
+alias shrug="echo '¯\_(ツ)_/¯'"
+alias pinguin="echo 🐧"
