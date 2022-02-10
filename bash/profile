@@ -1,13 +1,18 @@
 # ~/.bash_profile
 [ -z "$DOTFILES" ] && source "$HOME/.profile"
 
+# Always source local bash_profiles
 [ -r "$HOME/.bash_profile.local" ] && source "$HOME/.bash_profile.local"
+[ -r "$HOME/.local/bash_profile" ] && source "$HOME/.local/bash_profile"
 
 if shopt -q login_shell
 then
 # This is a bash login shell
 	LOGINHISTORY=~/.login.history
-	LOGINSTRING="$(date) ${USER}@${HOSTNAME}"
 
-	echo $LOGINSTRING > $LOGINHISTORY 
+	if [ -w "${LOGINHISTORY}" ]; then
+		echo "$(date) ${USER}@${HOSTNAME}" >> $LOGINHISTORY
+	fi
+
+	unset LOGINHISTORY
 fi

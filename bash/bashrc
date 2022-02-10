@@ -30,11 +30,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Load main things
-if [ -d "$DOTBASH/bash.d" ]; then
-	for f in colours aliases history prompt_command password-store
+if [ -d "$DOTBASH/bashrc.d" ]; then
+	for f in colours.bash aliases.bash history.bash prompt_command.bash password-store.bash network.bash
 	do
-		if [ -r "$DOTBASH/bash.d/$f" ]; then
-			source "$DOTBASH/bash.d/$f"
+		if [ -r "$DOTBASH/bashrc.d/$f" ]; then
+			source "$DOTBASH/bashrc.d/$f"
 		fi
 	done
 fi
@@ -44,6 +44,12 @@ if [ -r "$DOTBASH/$HOSTNAME.bashrc" ]; then
 	source "$DOTBASH/$HOSTNAME.bashrc"
 fi
 
-if [ -r "$HOME/.bashrc.local" ]; then
-	source "$HOME/.bashrc.local"
-fi
+# Always source a local bashrc
+[ -r "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
+
+# Use the local(ly linked) bashrc.private
+[ -r "$HOME/.local/bashrc.private" ] && source "$HOME/.local/bashrc.private"
+
+
+# Also check in .local for a bashrc
+[ -r "$HOME/.local/bashrc" ] && source "$HOME/.local/bashrc"
