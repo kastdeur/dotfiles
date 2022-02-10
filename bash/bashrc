@@ -30,8 +30,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Load main things
-if [ -d "$DOTBASH/bash.d" ]; then
-	for f in colours aliases history prompt_command password-store
+if [ -d "$DOTBASH/bashrc.d" ]; then
+	for f in colours.bash aliases.bash history.bash prompt_command.bash password-store.bash network.bash
 	do
 		if [ -r "$DOTBASH/bash.d/$f" ]; then
 			source "$DOTBASH/bash.d/$f"

@@ -22,7 +22,7 @@ alias l='ls -CF'
 alias mkdir='mkdir -p -v'
 
 # Use vim if possible instead of vi
-if [[ $(command -v vim) ]]; then
+if command -v vim > /dev/null; then
 	alias vi='vim'
 else
 	alias vim='vi'

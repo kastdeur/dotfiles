@@ -40,7 +40,9 @@ then
 fi
 
 # if this is BASH source BASHRC
-if [ "$BASH" ] && [ -f $DOTFILES/bash/rc ]
+DOTBASHRC="$DOTFILES/bash/bashrc"
+if [ "$BASH" ] && [ -r "$DOTBASHRC" ]
 then
-	source $DOTFILES/bash/rc
+	source "$DOTBASHRC"
 fi
+unset DOTBASHRC
