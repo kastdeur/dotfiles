@@ -71,7 +71,6 @@ function __PS1_hostname() {
 	case "${HOST%%.*}" in
 		'locksmith')   PS1+="${Pur}\h${RCol}";;
 		'bladesmith')  PS1+="${Yel}\h${RCol}";;
-		'gunsmith')    PS1+="${Red}\h${RCol}";;
 		'goldsmith')   PS1+="${IYel}\h${RCol}";;
 		*) NOMATCH=1;;
 	esac
@@ -82,7 +81,7 @@ function __PS1_hostname() {
 		fi
 
 		# extended colouring
-		if [ -z "${NOMATCH}" ]; then
+		if [ -n "${NOMATCH}" ]; then
 			PS1+="${NOMATCH}"
 		# default colouring
 		else
