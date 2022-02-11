@@ -11,5 +11,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Always source a local profile
 [ -r "$HOME/.profile.local" ] && source "$HOME/.profile.local"
 
+# Use the local(ly linked) profile.private
+[ -r "$HOME/.local/profile.private" ] && source "$HOME/.local/profile.private"
+
 # Also check in .local for a profile
 [ -r "$HOME/.local/profile" ] && source "$HOME/.local/profile"
