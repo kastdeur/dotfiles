@@ -15,7 +15,7 @@
     ~/.config/ncmpcpp/config: ncmpcpp/config
     ~/.config/ncmpcpp/bindings: ncmpcpp/bindings
     ~/.config/polybar: polybar
-    ~/.local/share/applications: ncmpcpp/ncmpcpp.desktop
+    ~/.local/share/applications/ncmpcpp.desktop: ncmpcpp/ncmpcpp.desktop
     ~/.mpd/mpd.conf: mpd/mpd.conf
     ~/.config/mpDris2/mpDris2.conf: mpd/mpDris2.conf
     ~/.config/systemd/mpDris2.service: mpd/mpDris2.service
