@@ -8,10 +8,14 @@
 [ -f ~/.Xresources ] && xrdb -merge $HOME/.Xresources
 
 # Turn on numlock
-numlockx on
+if [[ $(command -v numlockx) ]]; then
+	numlockx on
+fi
 
 # Caps Lock works as escape key: whoever uses CapsLock?
-setxkbmap -option caps:escape
+if [[ $(command -v setxkbmap) ]]; then
+	setxkbmap -option caps:escape
+fi
 
 # Start redshift if it exists
 if [[ $(command -v redshift) ]]; then
