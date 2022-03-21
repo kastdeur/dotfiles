@@ -78,6 +78,8 @@ function __PS1_hostname() {
 	if [ -n "${NOMATCH}" ]; then
 		if [ x$(type -t "$func_extension") = xfunction ]; then
 			NOMATCH=$($func_extension "$@")
+		else
+			NOMATCH=""
 		fi
 
 		# extended colouring
