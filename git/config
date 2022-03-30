@@ -8,6 +8,7 @@
 	default = matching
 [core]
 	excludesfile = ~/.config/git/ignore
+	attributesfile = ~/.config/git/attributes
 [color]
 	ui = auto
 [color "status"]
@@ -20,7 +21,7 @@
 [diff]
 	mnemonicPrefix = true
 	tool = vimdiff
-[diff "rst"]
+[diff "pandoc"]
 	textconv = pandoc --to=rst
 [diff "pdf"]
 	textconv = pdf2txt

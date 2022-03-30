@@ -8,6 +8,7 @@
 - link:
     ~/.bashrc: bash/bashrc
     ~/.bash_profile: bash/profile
+    ~/.config/git/attributes: git/attributes
     ~/.config/git/config: git/config
     ~/.config/git/ignore_global: git/ignore
     ~/.config/geany/keybindings.conf: geany/keybindings.conf

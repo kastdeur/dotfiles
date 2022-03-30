@@ -1,0 +1,12 @@
+# Automatically normalize line endings for all text-based files
+#* text=auto
+
+# Documents
+*.doc	diff=pandoc
+*.DOC	diff=pandoc
+*.docx	diff=pandoc
+*.DOCX	diff=pandoc
+*.odt	diff=pandoc
+*.ODT	diff=pandoc
+*.pdf	diff=pdf
+*.PDF	diff=pdf
