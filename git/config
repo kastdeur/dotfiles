@@ -10,6 +10,9 @@
 	excludesfile = ~/.config/git/ignore
 [color]
 	ui = auto
+[color "status"]
+	# use different color than untracked and unmerged paths have
+	changed = yellow
 [merge]
 	conflictstyle = diff3
 [branch]
