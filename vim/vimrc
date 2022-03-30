@@ -31,6 +31,7 @@ if has("patch-7.4.710")
 else
 	set listchars=tab:→\ ,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 endif
+set showbreak=\\
 
 "Folding
 "augroup vimrc
@@ -39,9 +40,14 @@ endif
 "augroup END
 
 " search for visually hightlighted text
-vnoremap <c-f> y<ESC>/<c-r>"<CR>   
+vnoremap <c-f> y<ESC>/<c-r>"<CR>
 
 set grepprg=grep\ -nH\ $*
+
+" Disable any mousing
+if has("mouse")
+	set mouse=
+endif
 
 " Don't wake up system with blinking cursor:
 " http://www.linuxpowertop.org/known.php
