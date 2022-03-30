@@ -31,5 +31,13 @@
 	lg = !"git lg1"
 	lga = !"git lg --all"
 
+	s = status --short
+	st = status
+
+	pushf = push --force-with-lease # Look mom, no --force
+
 	dif = diff
+	diffc = diff --cached
+	difc  = diff --cached
+
 	alias = "! git config --get-regexp ^alias\\. "
