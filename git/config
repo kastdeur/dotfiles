@@ -6,8 +6,6 @@
 	editor = geany
 [push]
 	default = matching
-[diff "pdf"]
-	textconv = pdf2txt
 [core]
 	excludesfile = ~/.config/git/ignore
 [color]
@@ -17,7 +15,12 @@
 [branch]
 	autosetuprebase = always
 [diff]
+	mnemonicPrefix = true
 	tool = vimdiff
+[diff "rst"]
+	textconv = pandoc --to=rst
+[diff "pdf"]
+	textconv = pdf2txt
 [alias]
 	# Short Fancy Logs
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
