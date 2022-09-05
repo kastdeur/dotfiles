@@ -37,6 +37,8 @@
 - create:
     ~/.ssh/keys/:
         mode: 0700
+    ~/.ssh/known_hosts.d:
+        mode: 0700
 
 - shell:
     -
