@@ -230,7 +230,7 @@ function git_status() {
 
 			### Test For Changes ### {{{
 			## Change this to test for 'ahead' or 'behind'!
-			local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
+			local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^##" | wc -l | tr -d ' ')"
 			if [ "$GChanges" == "0" ]; then
 				local GitCol=$Gre
 			  else
@@ -271,7 +271,7 @@ function git_status() {
 				PS1+="${Pur}≠${RCol}${GMod}"	# Modified
 			fi
 
-			local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
+			local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^?")"
 			if [ "$GUnt" -gt "0" ]; then
 				PS1+="${Yel}?${RCol}${GUnt}"	# Untracked
 			fi
