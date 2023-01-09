@@ -1,6 +1,10 @@
 # .bash_files
 # /PS
 
+# Set default to empty so it will show up in printenv
+SHORTPS1=${SHORTPS1:-}
+export SHORTPS1
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
