@@ -33,6 +33,7 @@
     ~/.config/user-dirs.dirs: X11/user-dirs.dirs
     ~/.config/awesome: awesome
     ~/.config/redshift.conf: redshift/redshift.conf
+    ~/.face: face
 
 - create:
     ~/.ssh/keys/:
