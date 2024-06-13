@@ -9,3 +9,5 @@ Host *
 	IdentityFile ~/.ssh/keys/%h
 	UserKnownHostsFile ~/.ssh/known_hosts ~/.ssh/known_hosts.d/%h ~/.ssh/known_hosts2
 	UpdateHostKeys ask
+	HashKnownHosts no
+	AddKeysToAgent yes
