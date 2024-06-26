@@ -10,7 +10,7 @@
     ~/.bash_profile: bash/profile
     ~/.config/git/attributes: git/attributes
     ~/.config/git/config: git/config
-    ~/.config/git/ignore_global: git/ignore
+    ~/.config/git/ignore_global: git/ignore_global
     ~/.config/geany/keybindings.conf: geany/keybindings.conf
     ~/.config/geany/filedefs: geany/filedefs
     ~/.config/ncmpcpp/config: ncmpcpp/config

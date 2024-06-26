@@ -7,7 +7,7 @@
 [push]
 	default = matching
 [core]
-	excludesfile = ~/.config/git/ignore
+	excludesfile = ~/.config/git/ignore_global
 	attributesfile = ~/.config/git/attributes
 [color]
 	ui = auto
