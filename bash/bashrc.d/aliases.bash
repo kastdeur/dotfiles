@@ -35,6 +35,9 @@ alias sudo='sudo '
 # Reload bashrc
 alias bashreload="source ~/.bashrc"
 
+# Always prefer Python3
+alias python='python3'
+
 # Easy calculator instead of bc
 alias pc='python -ic "from __future__ import division; from math import *"'
 
