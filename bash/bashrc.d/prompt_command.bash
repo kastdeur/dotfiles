@@ -5,6 +5,9 @@
 SHORTPS1=${SHORTPS1:-}
 export SHORTPS1
 
+STATICPS1=${STATICPS1:-}
+export STATICPS1
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -117,6 +120,7 @@ function __colored_username() {
 }
 
 function __prompt_command() {
+	local STATIC_PS1="${1:-${STATICPS1}}"
 	local RETVAL=$?
 	if [ ! $RETVAL -ne 0 ]; then
 		RETVAL=0
@@ -124,23 +128,26 @@ function __prompt_command() {
 
 	PS1="${debian_chroot:+($debian_chroot)}"
 
-#Return Value
-	if [ -n $RETVAL ]; then
-		PS1+="$(retval ${RETVAL})"
-	fi
+	if [ -z "${STATIC_PS1}" ]; then
+		### Add Return Value ###
+		if [ -n $RETVAL ]; then
+			PS1+="$(retval ${RETVAL})"
+		fi
 
-### Add amount of jobs ###
-	if true; then
-		PS1+="$(jobscount)"
-	fi
+		### Add amount of jobs ###
+		if true; then
+			PS1+="$(jobscount)"
+		fi
 	
-### Add Git Status ### 
-	if [[ $(command -v git) ]]; then
-		PS1+="$(git_status) "
+		### Add Git Status ###
+		if [[ $(command -v git) ]]; then
+			PS1+="$(git_status)"
+		fi
+
+		PS1+=" "
 	fi
 
-
-#user@hostname
+	# user@hostname
 	if color ; then
 		PS1+="$(__colored_username)"
 	else
@@ -155,7 +162,7 @@ function __prompt_command() {
 		PS1+="\h"
 	fi
 
-#time w/ seconds
+	# time w/ seconds
 	if color ;  then
 		PS1+="${Yel}${On_Bla}"
 	fi
@@ -165,26 +172,29 @@ function __prompt_command() {
 	if color ; then
 		PS1+="${RCol}"
 	fi
-	PS1+=" "
-#dir count, pwd
-	if color ; then
-		PS1+="${BBlu}"
-	fi
 
-	PS1+="\[$(ls |wc -l)\]@\W"
+	# dir count, pwd
+	if [ -z "${STATIC_PS1}" ]; then
+		PS1+=" "
+		if color ; then
+			PS1+="${BBlu}"
+		fi
 
-	if color ; then
-		PS1+="${RCol}"
+		PS1+="\[$(ls |wc -l)\]@\W"
+
+		if color ; then
+			PS1+="${RCol}"
+		fi
+		PS1+=" "
 	fi
-	PS1+=" "
-## Short prompt
+	## Short prompt
 	if [ -n "${SHORTPS1}" ]; then
 		PS1+="\r\n"
 	fi
-#UID
+	# UID
 	PS1+=':\$ '
 
-# Something for VTE
+	# Something for VTE
 	PS1+=$(vte_thing)
 
 }
