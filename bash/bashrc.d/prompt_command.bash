@@ -174,19 +174,21 @@ function __prompt_command() {
 	fi
 
 	# dir count, pwd
-	if [ -z "${STATIC_PS1}" ]; then
-		PS1+=" "
-		if color ; then
-			PS1+="${BBlu}"
-		fi
-
-		PS1+="\[$(ls |wc -l)\]@\W"
-
-		if color ; then
-			PS1+="${RCol}"
-		fi
-		PS1+=" "
+	PS1+=" "
+	if color ; then
+		PS1+="${BBlu}"
 	fi
+
+	if [ -z "${STATIC_PS1}" ]; then
+		PS1+="\[$(ls |wc -l)\]@"
+	fi
+
+	PS1+="\W"
+
+	if color ; then
+		PS1+="${RCol}"
+	fi
+	PS1+=" "
 	## Short prompt
 	if [ -n "${SHORTPS1}" ]; then
 		PS1+="\r\n"
