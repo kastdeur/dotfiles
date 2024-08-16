@@ -1,13 +1,15 @@
 # Separate SSH configurations
 #
-# This directory contains various separate ssh configurations.
+# This directory contains various separate ssh configurations
+# as `*.config` files.
 
-# Ordering of various lemmas is important. Therefore, one can use
-# a numeric prefix for ordering.
+# Ordering of various lemmas is important.
+# Therefore, one can use a numeric prefix for ordering.
 #
-# At the time of writing, the current scheme has two priorities:
-# * `20-` domain specific configurations
-# * `30-` host   specific configurations
+# At the time of writing, the current scheme has three priorities:
+# * `35-` host   specific configurations
+# * `75-` domain specific configurations
+# # `99-` defaults for wildcard configurations
 #
 # Other prefixes can be added at will as long as the numeric ordering
 # is maintained.

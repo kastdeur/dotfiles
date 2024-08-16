@@ -1,5 +1,5 @@
 # Include separate configs from ~/.ssh/config.d/
-Include ~/.ssh/config.d/*
+Include ~/.ssh/config.d/*.config
 
 # Defaults
 Host *
