@@ -42,3 +42,8 @@
 	difc  = diff --cached
 
 	alias = "! git config --get-regexp ^alias\\. "
+
+# Overwrite from local gitconfig files
+[include]
+	path = ~/.gitconfig.local
+	path = ~/.config/git/config.local
