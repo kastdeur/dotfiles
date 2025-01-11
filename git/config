@@ -2,29 +2,45 @@
 [user]
 	name = Eric Teunis de Boone
 	email = ericteunis@deboone.nl
-[gui]
-	editor = geany
+
 [push]
-	default = matching
+	default = current
+
 [core]
 	excludesfile = ~/.config/git/ignore_global
 	attributesfile = ~/.config/git/attributes
+
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
+	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
 [color]
 	ui = auto
+
 [color "status"]
 	# use different color than untracked and unmerged paths have
 	changed = yellow
+
 [merge]
 	conflictstyle = diff3
+
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+
 [branch]
 	autosetuprebase = always
+
 [diff]
 	mnemonicPrefix = true
 	tool = vimdiff
-[diff "pandoc"]
-	textconv = pandoc --to=rst
-[diff "pdf"]
-	textconv = pdf2txt
+	# Detect renames and copies
+	renames = copies
+
 [alias]
 	# Short Fancy Logs
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
@@ -42,6 +58,10 @@
 	difc  = diff --cached
 
 	alias = "! git config --get-regexp ^alias\\. "
+
+	tags = tag -l
+	branches = branch --all
+	remotes = remote --verbose
 
 # Overwrite from local gitconfig files
 [include]
