@@ -18,8 +18,11 @@ alias la='ls -A'
 alias lla='ll -A'
 alias l='ls -CF'
 
-# make mkdir nicer
+# verbose commands
 alias mkdir='mkdir -p -v'
+alias ln='ln -v'
+alias rm='rm -v'
+alias rmdir='rmdir -v'
 
 # Use vim if possible instead of vi
 if command -v vim > /dev/null; then
@@ -46,9 +49,10 @@ alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../../'
 
-# Computer control
-alias blank='sleep 1s && xset dpms force off'
-alias lock='blank; xscreensaver-command --lock'
+# Typos
+alias dc='cd'
+alias sl='ls'
+alias gti='git'
 
 # whatever
 alias shrug="echo '¯\_(ツ)_/¯'"
