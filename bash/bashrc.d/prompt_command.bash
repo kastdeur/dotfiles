@@ -147,6 +147,8 @@ function __prompt_command() {
 		PS1+=" "
 	fi
 
+	PS1+="$(parse_python_venv)"
+
 	# user@hostname
 	if color ; then
 		PS1+="$(__colored_username)"
@@ -342,5 +344,12 @@ function parse_git_dirty {
 		echo " ${bits}"
 	else
 		echo ""
+	fi
+}
+
+# get activated Python VirtualENV
+function parse_python_venv {
+	if [ ! -z "${VIRTUAL_ENV_PROMPT}" ]; then
+		echo "$VIRTUAL_ENV_PROMPT"
 	fi
 }
