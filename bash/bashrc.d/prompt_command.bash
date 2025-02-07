@@ -109,7 +109,7 @@ function __colored_username() {
 	if color ; then
 		case "${USER}" in
 			'root') PS1+="${Red}\u${RCol}";;
-			'kastdeur'|'ericteunis')  PS1+="${Gre}\u${RCol}";;
+			'kastdeur'|'ericteunis'|'deboone')  PS1+="${Gre}\u${RCol}";;
 			*)      PS1+="${Blu}\u${RCol}";;
 		esac
 	else
