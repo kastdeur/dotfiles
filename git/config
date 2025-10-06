@@ -48,8 +48,12 @@
 	lg = !"git lg1"
 	lga = !"git lg --all"
 
+	lb = !"git lg --simplify-by-decoration"
+	lba = !"git lb --all"
+
 	s = status --short
 	st = status
+	stauts = status
 
 	pushf = push --force-with-lease # Look mom, no --force
 
