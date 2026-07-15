@@ -1,0 +1,96 @@
+#!/bin/bash
+set -eu
+
+# Author: ET de Boone, 2020
+
+REMOTE_HOST="${REMOTE_HOST:-}"
+REMOTE_PATH="${REMOTE_PATH:-}"
+LOCAL_PATH="${LOCAL_PATH:-}"
+SSHFS_OPTS="${SSHFS_OPTS:-}"
+LOCAL_ROOT="${LOCAL_ROOT:-${HOME}/net}"
+
+MKDIR="mkdir -pv"
+RM="rm -dv"
+UMOUNT="${UMOUNT:-umount}"
+SSHFS="${SSHFS:-sshfs}"
+
+usage() {
+	cat <<-Usage
+	Usage: $0 [options] [[REMOTE_HOST:]REMOTE_PATH LOCAL_PATH] 
+
+	A simple wrapper around ${SSHFS} and ${UMOUNT} for (un)mounting a directory.
+	Note that arguments must be supplied as Environment Variables to be omitted as arguments.
+
+	Options:
+	  -h, --help        Show this help message
+	  -u, --unmount     Unmount the remote directory
+	  -m, --mount       Mount the remote directory
+
+	Arguments/Environment Variables:
+	  REMOTE_HOST       Specify a remote host ${REMOTE_HOST:+(default: ${REMOTE_HOST:-})}
+	  REMOTE_PATH       Specify a remote path ${REMOTE_PATH:+(default: ${REMOTE_PATH:-})}
+	  LOCAL_PATH        Specify a local directory ${LOCAL_PATH:+(default: ${LOCAL_PATH:-})}
+
+	Environment Variables:
+	  UMOUNT, SSHFS     Specify used program and options. The paths will be appended (default: ${UMOUNT}, ${SSHFS})
+	  SSHFS_OPTS        Specify extra options for mounting using ${SSHFS}. ${SSHFS_OPTS:+(default: ${SSHFS_OPTS:-})}
+	  LOCAL_ROOT        Specify root directory to prepend to LOCAL_PATH if it is not absolute ${LOCAL_ROOT:+(default: ${LOCAL_ROOT:-})}
+Usage
+}
+
+ACTION=""
+while [ $# -gt 0 ];
+do
+	case "$1" in
+		-h|--help) usage; exit 0 ;;
+		-u|--unmount) ACTION="unmount";;
+		-m|--mount)   ACTION="mount";;
+		*) break;;
+	esac
+	shift
+done
+
+if [ -z "${ACTION}" ]; then
+	usage
+	exit 1
+fi
+
+# CLI path arguments provided, try to parse them
+if [ $# -eq 2 ]; then
+	ARG_REMOTE="$1"
+	ARG_LOCAL="$2"
+
+	REMOTE_HOST="${ARG_REMOTE%%:*}"
+	REMOTE_PATH="${ARG_REMOTE#*:}"
+	LOCAL_PATH="${ARG_LOCAL}"
+fi
+
+# Prepend LOCAL_ROOT to LOCAL_PATH if needed
+if [ "${LOCAL_PATH:0:1}" != "/" ] && [ "${LOCAL_PATH:0:1}" != "." ]; then
+	if [ -n "${LOCAL_ROOT}" ]; then
+		LOCAL_PATH="${LOCAL_ROOT}/${LOCAL_PATH}"
+	else
+		echo "Error: LOCAL_ROOT is empty and LOCAL_PATH is not absolute, nor starting with a dot."
+		exit 1
+	fi
+fi
+
+if [ -z "${REMOTE_HOST}" ] || [ -z "${REMOTE_PATH}" ] || [ -z "${LOCAL_PATH}" ]; then
+	echo "Error: REMOTE_HOST, REMOTE_PATH, and LOCAL_PATH must be specified."
+	exit 1
+fi
+
+res=0
+if [ "${ACTION}" = "unmount" ]; then
+	${UMOUNT} "${LOCAL_PATH}"
+	res=$?
+	if [ $res -eq 0 ]; then
+		${RM} "${LOCAL_PATH}"
+	fi
+elif [ "${ACTION}" = "mount" ]; then
+	${MKDIR} "${LOCAL_PATH}" || { echo "Error: Failed to create directory ${LOCAL_PATH}."; exit 1; }
+	${SSHFS} "${REMOTE_HOST}:${REMOTE_PATH}" "${LOCAL_PATH}" ${SSHFS_OPTS}
+	res=$?
+fi
+
+exit $res
